@@ -15,7 +15,7 @@
 import java.util.Scanner;
 import java.io.*;
 
-class Blah {
+class Bia {
     public static void main(String args[]) throws Exception {
         File f;
         Scanner s;
