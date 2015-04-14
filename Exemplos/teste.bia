@@ -1,0 +1,13 @@
+Exemplo de código fonte da linguagem Blah
+Nesse arquivo o programador vai
+escrever o código do programa.
+
+Esse texto aqui é apenas um exemplo.
+Não tem comando algum aqui.
+
+Ex.:
+i = 3
+j = 9;
+j = i + 2;
+
+print i
