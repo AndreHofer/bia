@@ -1,7 +1,7 @@
 class Escrita extends Variavel{
 	private String conteudo;
 	
-	public void setEscrita(double c){
+	public void setEscrita(String c){
 		this.conteudo = c;
 	}
 

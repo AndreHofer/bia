@@ -39,6 +39,6 @@ class Bia {
 
         // Inicializamos o interpretador com o vetor de linhas. A partir
         // desse ponto, o objeto "b" irá interpretar o código lido do arquivo.
-        b.interpreta(linhas);
+        b.tratamento(linhas);
     }
 }
