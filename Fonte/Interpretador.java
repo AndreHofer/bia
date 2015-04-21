@@ -26,6 +26,31 @@ class Interpretador {
         }
     }
 
+    public void analisaLinha(String l) {
+            String linhaAtual;
+            linhaAtual = l;
+              
+    //Analisando se a linha atual se trata de uma declaração de variável
+            String[] linhaAtualPedacos = linhaAtual.split(" ");
+            int tamanho = linhaAtualPedacos.length - 1;
+                if((linhaAtualPedacos[0].equals("int")) ) {
+                    String ultimoElemento = linhaAtualPedacos[tamanho];
+                    tamanho = ultimoElemento.length();
+                    //System.out.println(ultimoElemento);
+                    //System.out.println(ultimoElemento.length());
+                    if(tamanho > 1) {
+                        if(ultimoElemento.charAt(tamanho - 1) == ';') {
+                            tratarDeVariavel(linhaAtual);
+                        }
+                    }else {
+                        if(ultimoElemento.equals(";")) {
+                            tratarDeVariavel(linhaAtual);
+                        }
+                    } 
+                }
+                
+            }
+
 }
 
   
