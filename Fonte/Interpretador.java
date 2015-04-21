@@ -10,7 +10,13 @@
 
 class Interpretador {
     private String linhas[];
-    
+    private Variavel[] atributos = new Variavel[2000];
+
+    public Interpretador() {
+        for(int i = 0; i < 2000; i++) {
+                atributos[i] = new Variavel();
+        }
+    }
 
    
 
