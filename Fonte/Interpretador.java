@@ -51,6 +51,39 @@ class Interpretador {
                 
             }
 
+    private void tratarDeVariavel(String l) {
+        String linha;
+        linha = l;
+        String[] linhaAtualPedacos = linha.split(" ");
+        //int tam = linhaAtualPedacos.length - 1;
+        String semTipo = ""; 
+        for (int i = 1; i < linhaAtualPedacos.length; i++) {
+            semTipo += linhaAtualPedacos[i];
+        }
+         if(semTipo.indexOf(",") >=0) {
+
+         }else {
+            String[] separandoIgual = semTipo.split("=");
+            //System.out.println(separandoIgual[1]);
+            double  n =  Double.parseDouble(separandoIgual[1].replaceAll(";",""));
+            
+            /*System.out.println(atributos[0].getNome());
+           
+            Boolean parar = false;
+            int i = 0;
+            while(parar != true) {
+                if(atributos[i].getNome() == null && !(atributos[i].getNome().equals(separandoIgual[0])) ) {
+                    atributos[i].setNome(separandoIgual[0]);
+                    atributos[i].setValor(n);
+                    parar = true;
+                    break;
+                }
+                i++;
+            }*/
+            
+          }
+    }
+
 }
 
   
