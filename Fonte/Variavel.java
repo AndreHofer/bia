@@ -1,6 +1,7 @@
 class Variavel{
 	private String nome;
 	
+	
 	public void setNome(String n){
 		this.nome = n;
 	}
@@ -8,4 +9,7 @@ class Variavel{
 	public String getNome(){
 		return this.nome;
 	}
+
+	
+
 }

@@ -10,12 +10,25 @@
 
 class Interpretador {
     private String linhas[];
+    
+
+   
 
     public void tratamento(String l[]) {
-        this.linhas = l;
+        this.linhas = l;;
+        for(int i = 0; (i < this.linhas.length) && (this.linhas[i] != null); i++) {
+                 
+                    String linhaAtual = this.linhas[i];
+                        if(i == 0) {
+                        analisaLinha(linhaAtual);
+                    }
+                 
+        }
     }
 
-  }
+}
+
+  
 
     
     /*public void interpreta(String l[]) {
