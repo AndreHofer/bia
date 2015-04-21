@@ -1,5 +1,6 @@
 class Variavel{
 	private String nome;
+	private double valor;
 	
 	
 	public void setNome(String n){
@@ -10,6 +11,12 @@ class Variavel{
 		return this.nome;
 	}
 
+	public void setValor(double n) {
+		this.valor = n;
+	}
+	public double getValor() {
+		return this.valor;
+	}
 	
 
 }
