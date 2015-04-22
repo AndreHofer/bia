@@ -10,16 +10,20 @@
 
 class Interpretador {
     private String linhas[];
+    /*A ideia é criar um vetor de variáveis que fique
+    armazenando as mesmas durante a execução do interpretador*/
     private Variavel[] atributos = new Variavel[2000];
 
+    /*Criando o construtor */
     public Interpretador() {
+        //Instanciando todas as variáveis do interpretador.
         for(int i = 0; i < 2000; i++) {
                 atributos[i] = new Variavel();
         }
     }
 
    
-
+    //Varrendo linha por linha, e chamando a função analisaLinha, para determinar do que se trata.
     public void tratamento(String l[]) {
         this.linhas = l;;
         for(int i = 0; (i < this.linhas.length) && (this.linhas[i] != null); i++) {
@@ -32,7 +36,8 @@ class Interpretador {
         }
     }
 
-    public void analisaLinha(String l) {
+    //Esta  função determina se é uma declaração de variável, se é um loop, se é uma expressão aritmética.
+        public void analisaLinha(String l) {
             String linhaAtual;
             linhaAtual = l;
               
@@ -57,7 +62,9 @@ class Interpretador {
                 
             }
 
-    private void tratarDeVariavel(String l) {
+
+            // Se já constatado se tratar da declaração de uma variável, eu inicio o tratamento para armazenar a mesma no vetor de variáveis
+        private void tratarDeVariavel(String l) {
         String linha;
         linha = l;
         String[] linhaAtualPedacos = linha.split(" ");
