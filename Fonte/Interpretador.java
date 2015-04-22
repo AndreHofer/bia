@@ -29,11 +29,15 @@ class Interpretador {
         for(int i = 0; (i < this.linhas.length) && (this.linhas[i] != null); i++) {
                  
                     String linhaAtual = this.linhas[i];
-                        if(i == 0) {
+                        
                         analisaLinha(linhaAtual);
-                    }
+                    
                  
         }
+        for(int y = 0;y < 2000 && atributos[y].getNome() != null; y++) {
+                System.out.println(y+" "+atributos[y].getNome() + " " + atributos[y].getValor());
+
+            }
     }
 
     //Esta  função determina se é uma declaração de variável, se é um loop, se é uma expressão aritmética.
@@ -80,20 +84,18 @@ class Interpretador {
             //System.out.println(separandoIgual[1]);
             double  n =  Double.parseDouble(separandoIgual[1].replaceAll(";",""));
             
-            /*System.out.println(atributos[0].getNome());
-           
-            Boolean parar = false;
             int i = 0;
-            while(parar != true) {
-                if(atributos[i].getNome() == null && !(atributos[i].getNome().equals(separandoIgual[0])) ) {
+            boolean status = false;
+            while(status != true) {
+                if(atributos[i].getNome() == null && status != true) {
                     atributos[i].setNome(separandoIgual[0]);
-                    atributos[i].setValor(n);
-                    parar = true;
+                    atributos[i].setValor(n); 
+                     status = true;
                     break;
                 }
                 i++;
-            }*/
-            
+            }
+
           }
     }
 
