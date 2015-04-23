@@ -44,8 +44,11 @@ class Interpretador {
         public void analisaLinha(String l) {
             String linhaAtual;
             linhaAtual = l;
-              
-    //Analisando se a linha atual se trata de uma declaração de variável
+    
+    /*Início da parte que analisa se a linha se trata de uma declaração de variável*/ 
+    //Quebro a string em espaços em branco ex: Int valor = 1;
+    // linhaAtual[0] = "Int", linhaAtual[1] = "valor", linhaAtual[2] = "=", linhaAtual = "1"
+    //e então vou analisando ela
             String[] linhaAtualPedacos = linhaAtual.split(" ");
             int tamanho = linhaAtualPedacos.length - 1;
                 if((linhaAtualPedacos[0].equals("int")) ) {
@@ -63,7 +66,8 @@ class Interpretador {
                         }
                     } 
                 }
-                
+              
+    /*Fim da parte que analisa se a linha se trata de uma declaração de variável*/  
             }
 
 
