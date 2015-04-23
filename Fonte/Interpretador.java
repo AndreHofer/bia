@@ -98,19 +98,15 @@ class Interpretador {
             }
 		}else{
 					
-					int i= 0; 
-					boolean status = false;
-					while(status != true) {
-							if(atributos[i].getNome() == null && status != true) {
-									atributos.[i].setNome(semTipo.replaceAll(";", ""));
-					}
-			}
+				System.out.println(semTipo);
             
 
-    }
-  }
+            }
+        }
 
+    }
 }
+
 
   
 
