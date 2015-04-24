@@ -82,6 +82,38 @@ class Interpretador {
             semTipo += linhaAtualPedacos[i];
         }
          if(semTipo.indexOf(",") >=0) {
+              String[] semTipoM = semTipo.split(",");
+              for(int u = 0; u < semTipoM.length; u++) {
+                   // System.out.println(semTipoM[u]);
+                    if(semTipoM[u].indexOf("=") >= 0) {
+                            String[] quebrandoTudo = semTipoM[u].split("=");
+                            double n = Double.parseDouble(quebrandoTudo[1].replaceAll(";",""));
+                            int i = 0;
+                              boolean status = false;
+                             while(status != true) {
+                                  if(atributos[i].getNome() == null && status != true) {
+                                    atributos[i].setNome(quebrandoTudo[0]);
+                                   atributos[i].setValor(n); 
+                                     status = true;
+                                     break;
+                                     }
+                                        i++;
+                                        }
+                                  }else{
+                                            
+                                        int y = 0;
+                                        boolean status = false;
+                                        while(status != true) {
+                                           if(atributos[y].getNome() == null && status != true) {
+                                                atributos[y].setNome(semTipoM[u].replaceAll(";",""));
+                                                atributos[y].setValor(0);
+                                                status = true;
+                                               break;
+                                         }
+                                         y++;
+                                     }
+                                }
+                    }
 
          }else {
 		if(semTipo.indexOf("=") >=0) {
@@ -101,9 +133,18 @@ class Interpretador {
                i++;
             }
 		}else{
-					
-				System.out.println(semTipo);
-            
+				//System.out.println(semTipo);
+                int y = 0;
+                boolean status = false;
+                while(status != true) {
+                    if(atributos[y].getNome() == null && status != true) {
+                        atributos[y].setNome(semTipo.replaceAll(";",""));
+                        atributos[y].setValor(0);
+                        status = true;
+                        break;
+                    }
+                    y++;
+                }
 
             }
         }
