@@ -67,17 +67,20 @@ class Interpretador {
                             tratarDeVariavel(linhaAtual);
                         }
                     } 
-                }else{
+                }
                     //String[] vetor_op = {'+','-','*','^','/','<','>','<=','>=','%'}
                     //int cond = 0;
                     String[] vetor_op = {"+","-","*","^","/","<",">","<=",">=","%","int"};
                     boolean cond = false;
+                    
                     for(int i = 0; i < vetor_op.length; i++) {
                         String a = vetor_op[i];
                         if(linhaAtual.indexOf(vetor_op[i])>= 0) {
                             cond = true;
+                           
                         }
                     }
+                   
                    if((linhaAtual.indexOf("=")>= 0) && (cond == false)) {
                        String[] quebrandoTudo = linhaAtual.split("=");
                             for(int r = 0; r < atributos.length && atributos[r].getNome() != null;r++) {
@@ -87,10 +90,21 @@ class Interpretador {
                               }
 
 
+                    }else if(linhaAtual.indexOf("=")>=0 && (cond == true)) {
+                        //System.out.println(linhaAtual);
+                        double a,b,result;
+                        String[] quebrandoTudo = linhaAtual.split("=");
+                        String ope = quebrandoTudo[1].replaceAll(" ","");
+                        //String[] variaveis_expressao = ope.split("+");
+                        if(quebrandoTudo[1].indexOf("+")>=0) {
+                          // System.out.println(ope.split("\+"));
+                        }
+                        
+
                     }
+                
 
-
-                }
+                
               
     /*Fim da parte que analisa se a linha se trata de uma declaração de variável*/  
             }
