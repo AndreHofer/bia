@@ -34,10 +34,10 @@ class Interpretador {
                     
                  
         }
-        for(int y = 0;y < 2000 && atributos[y].getNome() != null; y++) {
+      /*  for(int y = 0;y < 2000 && atributos[y].getNome() != null; y++) {
                 System.out.println(y+" "+atributos[y].getNome() + " " + atributos[y].getValor());
 
-            }
+            } */
     }
 
     //Esta  função determina se é uma declaração de variável, se é um loop, se é uma expressão aritmética.
@@ -49,7 +49,9 @@ class Interpretador {
     //Quebro a string em espaços em branco ex: Int valor = 1;
     // linhaAtual[0] = "Int", linhaAtual[1] = "valor", linhaAtual[2] = "=", linhaAtual = "1"
     //e então vou analisando ela
+
             String[] linhaAtualPedacos = linhaAtual.split(" ");
+            //System.out.println(linhaAtualPedacos[0]);
             int tamanho = linhaAtualPedacos.length - 1;
                 if((linhaAtualPedacos[0].equals("int")) ) {
                     String ultimoElemento = linhaAtualPedacos[tamanho];
@@ -65,6 +67,29 @@ class Interpretador {
                             tratarDeVariavel(linhaAtual);
                         }
                     } 
+                }else{
+                    //String[] vetor_op = {'+','-','*','^','/','<','>','<=','>=','%'}
+                    //int cond = 0;
+                    String[] vetor_op = {"+","-","*","^","/","<",">","<=",">=","%","int"};
+                    boolean cond = false;
+                    for(int i = 0; i < vetor_op.length; i++) {
+                        String a = vetor_op[i];
+                        if(linhaAtual.indexOf(vetor_op[i])>= 0) {
+                            cond = true;
+                        }
+                    }
+                   if((linhaAtual.indexOf("=")>= 0) && (cond == false)) {
+                       String[] quebrandoTudo = linhaAtual.split("=");
+                            for(int r = 0; r < atributos.length && atributos[r].getNome() != null;r++) {
+                                    if(atributos[r].getNome().replaceAll(" ","").equals(quebrandoTudo[0].replaceAll(" ",""))) {
+                                        atributos[r].setValor(Double.parseDouble(quebrandoTudo[1].replaceAll(";","")));
+                                    }
+                              }
+
+
+                    }
+
+
                 }
               
     /*Fim da parte que analisa se a linha se trata de uma declaração de variável*/  
