@@ -8,3 +8,6 @@ double g= 3-2;
 double h= 3*2;
 double i =   3 /2;
 double j=5%2;
+int k, l=3;// retorna k=0, l=3, não deveria retornar k=3 e l=3?
+int m=l;//não aceita
+// não tem comentarios   :(
