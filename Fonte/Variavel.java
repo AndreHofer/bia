@@ -13,12 +13,7 @@ class Variavel{
 		return this.nome;
 	}
 
-	public Variavel[] maisVariaveis(String l,int n) {
-		Variavel[] var = new Variavel[n];
 
-		return var;
-
-	}
 	
 	/* Função tratarDeclaracaoVariavel nela eu quebro a linha e descubro os valores 
 		e retorno uma variável pronta com os dados */
@@ -43,7 +38,7 @@ class Variavel{
 					linhaAtual = linhaAtual.replaceAll("double","double ");
 					linhaQuebrada = linhaAtual.split(" ");
 		}
-
+		// parte separada da declaração, int  =  linhaQuebrada1>>a + b 
 		String variavelDeclarada = linhaQuebrada[1];
 
 		if(!(linhaAtual.indexOf(",") >= 0)) {

@@ -31,6 +31,7 @@ class Interpretador {
                  analisaLinha(linhaAtual);
         }
         //Imprimindo o conteúdo do vetor de variáveis
+        // Somente para teste
         for(int y = 0;y < 2000 && atributos[y].getNome() != null; y++) {
                 if(atributos[y] instanceof Inteiro) {
                     Inteiro n = (Inteiro) atributos[y];
@@ -55,15 +56,16 @@ class Interpretador {
             linhaAtual = l;
             int pos = 0 ;
             /* Aqui eu sei se a linha é uma declaração de variável                      */
-            /*                                                                          */
             if(( (linhaAtual.indexOf("int") >= 0)) || ( linhaAtual.indexOf("double") >= 0)  || 
                 (linhaAtual.indexOf("string") >= 0)) {
+					// Se tem vírgula preciso quebrar em partes e mandar para análise igual
                 if(l.indexOf(",") >= 0) {
                     String tipo = "";
                     String[] vetorTamanho = l.split(",");
                     int tamanhoVetor = vetorTamanho.length;
                     if(linhaAtual.indexOf("int") >= 0) {
                         tipo = "int";
+                        //Removo espaços vazios, \\s ; e \"
                         linhaAtual = linhaAtual.replaceAll("[\\s;\"]",""); 
                         linhaAtual = linhaAtual.replaceAll("int","");
                     }else if(linhaAtual.indexOf("string") >=0 ) {
@@ -77,7 +79,9 @@ class Interpretador {
                     }
                     vetorTamanho = linhaAtual.split(",");
                     Variavel var = new Variavel();
-
+					/*Eu tenho todas as variáveis quebradas em vetor tamanho, e o seu repsectivo tipo na variável tipo 
+					 * então mando uma por vez ser tratada e em seguida chamo a função de inserção no vetor de variáveis 
+					 * do interpretador */
                    for(int i = 0; i < tamanhoVetor; i++) {
                         var = var.tratarDeclaracaoVariavel(tipo+vetorTamanho[i]);
                         this.inserirVariavel(var);
@@ -99,16 +103,20 @@ class Interpretador {
     }
 
     public void inserirVariavel(Variavel var) {
+		// -1 é só para inicializar
         int caminho = -1;
         boolean status = false;
         for(int i = 0;status == false; i++) {
-           // System.out.println(atributos[i].getNome());
+           // Descobrindo uma variável do vetor que tenha valor null e checando se o status é false
             if(atributos[i].getNome() == null && status == false) {
+				//salvo o indíce correspondente que está disponível para inserção
                 caminho = i;
                 status = true;
+                //mudo o status para true, indicando que sei onde inserir
             }
         }
         if(caminho != -1) {
+			//analiso o tipo da variável que recebi e instancio ela respectivamente no vetor de variáveis e atribuo a variável na posição escolhida 
         if(var instanceof Inteiro) {
             Inteiro n = (Inteiro) var;
             atributos[caminho] = new Inteiro();
