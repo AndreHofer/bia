@@ -20,9 +20,9 @@ class Bia {
         File f;
         Scanner s;
         Interpretador b;
-        String linhas[] = new String[2000]; // arquivo pode ter, no máximo, 2000 linhas.
+        String linhas[] = new String[2000]; 
 
-        // args[0] conterá o caminho para o arquivo que serah interpretado.
+        // args[0] conterá o caminho para o arquivo que serah interpretado
         f = new File(args[0]);
         // Mandamos o Scanner ler a partir do arquivo.
         s = new Scanner(f);

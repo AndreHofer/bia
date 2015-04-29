@@ -13,12 +13,6 @@ class Variavel{
 		return this.nome;
 	}
 
-	public Variavel[] maisVariaveis(String l,int n) {
-		Variavel[] var = new Variavel[n];
-
-		return var;
-
-	}
 	
 	/* Função tratarDeclaracaoVariavel nela eu quebro a linha e descubro os valores 
 		e retorno uma variável pronta com os dados */
@@ -43,7 +37,7 @@ class Variavel{
 					linhaAtual = linhaAtual.replaceAll("double","double ");
 					linhaQuebrada = linhaAtual.split(" ");
 		}
-
+		// parte separada da declaração, int  =  linhaQuebrada1>>a + b 
 		String variavelDeclarada = linhaQuebrada[1];
 
 		if(!(linhaAtual.indexOf(",") >= 0)) {
@@ -77,11 +71,10 @@ class Variavel{
 			return retornaVariavel;
 	}
 
-	
-
 	private Variavel fazSet(String linha,String tipo) {
 		Variavel estadoAtual = new Variavel();
 		String[] nomeValor = new String[2];
+		String[] opera = new String[2];
 		if (linha.indexOf("=") >= 0) {
 			nomeValor = linha.split("=");
 			nomeValor[1] = nomeValor[1].replaceAll("[;\"]","");
@@ -97,17 +90,65 @@ class Variavel{
 		}
 		//System.out.println(nomeValor[0]+" "+nomeValor[1]); 
 		if(tipo.equals("inteiro")) {
-			 Inteiro estado = new Inteiro();
+			Inteiro estado = new Inteiro();
 			estado.setNome(nomeValor[0]);
-			estado.setInteiro(Integer.valueOf(nomeValor[1]).intValue());
+			if ((nomeValor[1].indexOf("+")>= 0)||(nomeValor[1].indexOf("-")>= 0)||(nomeValor[1].indexOf("*")>= 0)||(nomeValor[1].indexOf("/")>= 0)||(nomeValor[1].indexOf("%")>= 0)) {
+				if (nomeValor[1].indexOf("+")>= 0){
+					opera=nomeValor[1].split("\\+");
+					estado.setInteiro((Integer.valueOf(opera[0]).intValue()));
+					estado.soma(Integer.valueOf(opera[1]).intValue());
+				} else if(nomeValor[1].indexOf("-")>= 0){
+					opera=nomeValor[1].split("-");
+					estado.setInteiro((Integer.valueOf(opera[0]).intValue()));
+					estado.subtrai(Integer.valueOf(opera[1]).intValue());
+				}else if(nomeValor[1].indexOf("*")>= 0){
+					opera=nomeValor[1].split("\\*");
+					estado.setInteiro((Integer.valueOf(opera[0]).intValue()));
+					estado.multiplica(Integer.valueOf(opera[1]).intValue());
+				}else if(nomeValor[1].indexOf("/")>= 0){
+					opera=nomeValor[1].split("/");
+					estado.setInteiro((Integer.valueOf(opera[0]).intValue()));
+					estado.divide(Integer.valueOf(opera[1]).intValue());
+				}else if(nomeValor[1].indexOf("%")>= 0){
+					opera=nomeValor[1].split("%");
+					estado.setInteiro((Integer.valueOf(opera[0]).intValue()));
+					estado.mod(Integer.valueOf(opera[1]).intValue());
+				}
+			}else{
+				estado.setInteiro(Integer.valueOf(nomeValor[1]).intValue());
+			}
 			estadoAtual = estado;
 		}else if(tipo.equals("double")) {  
-			 Numeral estado = new Numeral();
+			Numeral estado = new Numeral();
 			estado.setNome(nomeValor[0]);
-			estado.setNumeral(Double.valueOf(nomeValor[1]).doubleValue());
+			if ((nomeValor[1].indexOf("+")>= 0)||(nomeValor[1].indexOf("-")>= 0)||(nomeValor[1].indexOf("*")>= 0)||(nomeValor[1].indexOf("/")>= 0)||(nomeValor[1].indexOf("%")>= 0)) {
+				if (nomeValor[1].indexOf("+")>= 0){
+					opera=nomeValor[1].split("\\+");
+					estado.setNumeral((Double.valueOf(opera[0]).doubleValue()));
+					estado.soma(Double.valueOf(opera[1]).doubleValue());
+				} else if(nomeValor[1].indexOf("-")>= 0){
+					opera=nomeValor[1].split("-");
+					estado.setNumeral((Double.valueOf(opera[0]).doubleValue()));
+					estado.subtrai(Double.valueOf(opera[1]).doubleValue());
+				}else if(nomeValor[1].indexOf("*")>= 0){
+					opera=nomeValor[1].split("\\*");
+					estado.setNumeral((Double.valueOf(opera[0]).doubleValue()));
+					estado.multiplica(Double.valueOf(opera[1]).doubleValue());
+				}else if(nomeValor[1].indexOf("/")>= 0){
+					opera=nomeValor[1].split("/");
+					estado.setNumeral((Double.valueOf(opera[0]).doubleValue()));
+					estado.divide(Double.valueOf(opera[1]).doubleValue());
+				}else if(nomeValor[1].indexOf("%")>= 0){
+					opera=nomeValor[1].split("%");
+					estado.setNumeral((Double.valueOf(opera[0]).doubleValue()));
+					estado.mod(Double.valueOf(opera[1]).doubleValue());
+				}
+			}else{
+				estado.setNumeral(Double.valueOf(nomeValor[1]).doubleValue());
+			}
 			estadoAtual = estado;
 		}else if(tipo.equals("string")) {
-			 Escrita estado = new Escrita();
+			Escrita estado = new Escrita();
 			estado.setNome(nomeValor[0]);
 			estado.setEscrita(nomeValor[1]);
 			estadoAtual = estado;

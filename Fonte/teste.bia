@@ -1,5 +1,10 @@
-int a;
-string marcelo;
-
-
-
+int a= 3 + 2;
+int b= 3-2;
+int c= 3*2;
+int d =  3  /2;
+int e=5%2;
+double f= 3 + 2;
+double g= 3-2;
+double h= 3*2;
+double i =   3 /2;
+double j=5%2;

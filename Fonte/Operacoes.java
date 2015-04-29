@@ -1,30 +1,22 @@
 class Operacoes{
-	private int a;
-	private int b;
-	
-	public void setOperacoes (int x, int y){
-		this.a=x;
-		this.b=y;
+	public int soma (int a, int b){
+		return (a + b);
 	}
 	
-	public int soma (){
-		return (this.a + this.b);
+	public int subtracao (int a, int b){
+		return (a - b);
 	}
 	
-	public int subtracao (){
-		return (this.a - this.b);
+	public int multiplicacao (int a, int b){
+		return (a * b);
 	}
 	
-	public int multiplicacao (){
-		return (this.a * this.b);
+	public int divisao (int a, int b){
+		return (a / b);
 	}
 	
-	public int divisao (){
-		return (this.a / this.b);
-	}
-	
-	public int mod (){
-		return (this.a % this.b);
+	public int mod (int a, int b){
+		return (a % b);
 	}
 }
 
