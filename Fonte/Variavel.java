@@ -12,11 +12,6 @@ class Variavel{
 	public String getNome(){
 		return this.nome;
 	}
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 30e85b447654a37131b87c93e573eb1d814e8a73
 	
 	/* Função tratarDeclaracaoVariavel nela eu quebro a linha e descubro os valores 
 		e retorno uma variável pronta com os dados */
