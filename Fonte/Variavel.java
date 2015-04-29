@@ -94,24 +94,19 @@ class Variavel{
 			if ((nomeValor[1].indexOf("+")>= 0)||(nomeValor[1].indexOf("-")>= 0)||(nomeValor[1].indexOf("*")>= 0)||(nomeValor[1].indexOf("/")>= 0)||(nomeValor[1].indexOf("%")>= 0)) {
 				if (nomeValor[1].indexOf("+")>= 0){
 					opera=nomeValor[1].split("\\+");
-					estado.setInteiro((Integer.valueOf(opera[0]).intValue()));
-					estado.soma(Integer.valueOf(opera[1]).intValue());
+					estado.soma((Integer.valueOf(opera[0]).intValue()),Integer.valueOf(opera[1]).intValue());
 				} else if(nomeValor[1].indexOf("-")>= 0){
 					opera=nomeValor[1].split("-");
-					estado.setInteiro((Integer.valueOf(opera[0]).intValue()));
-					estado.subtrai(Integer.valueOf(opera[1]).intValue());
+					estado.subtrai((Integer.valueOf(opera[0]).intValue()),Integer.valueOf(opera[1]).intValue());
 				}else if(nomeValor[1].indexOf("*")>= 0){
 					opera=nomeValor[1].split("\\*");
-					estado.setInteiro((Integer.valueOf(opera[0]).intValue()));
-					estado.multiplica(Integer.valueOf(opera[1]).intValue());
+					estado.multiplica((Integer.valueOf(opera[0]).intValue()),Integer.valueOf(opera[1]).intValue());
 				}else if(nomeValor[1].indexOf("/")>= 0){
 					opera=nomeValor[1].split("/");
-					estado.setInteiro((Integer.valueOf(opera[0]).intValue()));
-					estado.divide(Integer.valueOf(opera[1]).intValue());
+					estado.divide((Integer.valueOf(opera[0]).intValue()),Integer.valueOf(opera[1]).intValue());
 				}else if(nomeValor[1].indexOf("%")>= 0){
 					opera=nomeValor[1].split("%");
-					estado.setInteiro((Integer.valueOf(opera[0]).intValue()));
-					estado.mod(Integer.valueOf(opera[1]).intValue());
+					estado.mod((Integer.valueOf(opera[0]).intValue()),Integer.valueOf(opera[1]).intValue());
 				}
 			}else{
 				estado.setInteiro(Integer.valueOf(nomeValor[1]).intValue());
@@ -123,24 +118,19 @@ class Variavel{
 			if ((nomeValor[1].indexOf("+")>= 0)||(nomeValor[1].indexOf("-")>= 0)||(nomeValor[1].indexOf("*")>= 0)||(nomeValor[1].indexOf("/")>= 0)||(nomeValor[1].indexOf("%")>= 0)) {
 				if (nomeValor[1].indexOf("+")>= 0){
 					opera=nomeValor[1].split("\\+");
-					estado.setNumeral((Double.valueOf(opera[0]).doubleValue()));
-					estado.soma(Double.valueOf(opera[1]).doubleValue());
+					estado.soma(Double.valueOf(opera[0]).doubleValue(),Double.valueOf(opera[1]).doubleValue());
 				} else if(nomeValor[1].indexOf("-")>= 0){
 					opera=nomeValor[1].split("-");
-					estado.setNumeral((Double.valueOf(opera[0]).doubleValue()));
-					estado.subtrai(Double.valueOf(opera[1]).doubleValue());
+					estado.subtrai(Double.valueOf(opera[0]).doubleValue(),Double.valueOf(opera[1]).doubleValue());
 				}else if(nomeValor[1].indexOf("*")>= 0){
 					opera=nomeValor[1].split("\\*");
-					estado.setNumeral((Double.valueOf(opera[0]).doubleValue()));
-					estado.multiplica(Double.valueOf(opera[1]).doubleValue());
+					estado.multiplica(Double.valueOf(opera[0]).doubleValue(),Double.valueOf(opera[1]).doubleValue());
 				}else if(nomeValor[1].indexOf("/")>= 0){
 					opera=nomeValor[1].split("/");
-					estado.setNumeral((Double.valueOf(opera[0]).doubleValue()));
-					estado.divide(Double.valueOf(opera[1]).doubleValue());
+					estado.divide(Double.valueOf(opera[0]).doubleValue(),Double.valueOf(opera[1]).doubleValue());
 				}else if(nomeValor[1].indexOf("%")>= 0){
 					opera=nomeValor[1].split("%");
-					estado.setNumeral((Double.valueOf(opera[0]).doubleValue()));
-					estado.mod(Double.valueOf(opera[1]).doubleValue());
+					estado.mod(Double.valueOf(opera[0]).doubleValue(),Double.valueOf(opera[1]).doubleValue());
 				}
 			}else{
 				estado.setNumeral(Double.valueOf(nomeValor[1]).doubleValue());

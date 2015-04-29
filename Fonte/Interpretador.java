@@ -25,37 +25,40 @@ class Interpretador {
    
     //Varrendo linha por linha, e chamando a função analisaLinha, para determinar do que se trata.
     public void tratamento(String l[]) {
-        this.linhas = l;
-        for(int i = 0; (i < this.linhas.length) && (this.linhas[i] != null); i++) {
-                 String linhaAtual = this.linhas[i];
-                 analisaLinha(linhaAtual);
-        }
+		this.linhas = l;
+		for(int i = 0; (i < this.linhas.length) && (this.linhas[i] != null); i++) {
+			String linhaAtual = this.linhas[i];
+			analisaLinha(linhaAtual);
+		}
         //Imprimindo o conteúdo do vetor de variáveis
         // Somente para teste
         for(int y = 0;y < 2000 && atributos[y].getNome() != null; y++) {
-                if(atributos[y] instanceof Inteiro) {
-                    Inteiro n = (Inteiro) atributos[y];
-                    System.out.println(y+" "+n.getNome()+ " "+ n.getInteiro());   
-                }
-                if(atributos[y] instanceof Escrita) {
-                    Escrita n = (Escrita) atributos[y];
-                    System.out.println(y+" "+n.getNome()+ " "+ n.getEscrita());   
-                }
-                if(atributos[y] instanceof Numeral) {
-                    Numeral n = (Numeral) atributos[y];
-                    System.out.println(y+" "+n.getNome()+ " "+ n.getNumeral());   
-                }
-                
-
-            } 
+			if(atributos[y] instanceof Inteiro) {
+				Inteiro n = (Inteiro) atributos[y];
+				System.out.println(y+" "+n.getNome()+ " "+ n.getInteiro());   
+			}
+			if(atributos[y] instanceof Escrita) {
+				Escrita n = (Escrita) atributos[y];
+				System.out.println(y+" "+n.getNome()+ " "+ n.getEscrita());   
+			}
+			if(atributos[y] instanceof Numeral) {
+				Numeral n = (Numeral) atributos[y];
+				System.out.println(y+" "+n.getNome()+ " "+ n.getNumeral());   
+			}
+		}
     }
 
     
     public void analisaLinha(String l) {
+			String[] comenta = new String[2];
             String linhaAtual;
             linhaAtual = l;
             int pos = 0 ;
-            /* Aqui eu sei se a linha é uma declaração de variável                      */
+            /* Aqui eu sei se a linha é uma declaração de variável */
+            if (linhaAtual.indexOf("#")>=0){
+				comenta=linhaAtual.split("#+");
+				linhaAtual=comenta[0];
+			}
             if(( (linhaAtual.indexOf("int") >= 0)) || ( linhaAtual.indexOf("double") >= 0)  || 
                 (linhaAtual.indexOf("string") >= 0)) {
 					// Se tem vírgula preciso quebrar em partes e mandar para análise igual
