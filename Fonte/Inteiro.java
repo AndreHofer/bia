@@ -29,4 +29,3 @@ class Inteiro extends Variavel{
 		this.valor= (a % b);
 	}
 }
-

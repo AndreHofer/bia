@@ -60,8 +60,26 @@ class Interpretador {
 				comenta=linhaAtual.split("#+");
 				linhaAtual=comenta[0];
 			}
-            if(( (linhaAtual.indexOf("int") >= 0)) || ( linhaAtual.indexOf("double") >= 0)  || 
-                (linhaAtual.indexOf("string") >= 0)) {
+			if(linhaAtual.indexOf("imprime") >= 0){
+				int n=(1+linhaAtual.indexOf(","));
+				int a= 0;
+				String[] impressao = new String[n];
+				String[] parte = new String[2];
+				parte=linhaAtual.split ("\\(");
+				impressao= parte[1].split (",");
+				impressao[6] = impressao[6].replaceAll("\\);",""); //[n], não 6
+				System.out.println(n);
+				while(a<=n){
+					System.out.println(a);
+					System.out.println(impressao[a]);
+					a++;
+				}
+				System.out.print("\n");
+				
+			}else if(linhaAtual.indexOf("escreve") >= 0){
+				
+			}else if(( (linhaAtual.indexOf("int") >= 0)) || ( linhaAtual.indexOf("double") >= 0)  || 
+					 (linhaAtual.indexOf("string") >= 0)) {
 					// Se tem vírgula preciso quebrar em partes e mandar para análise igual
                 if(l.indexOf(",") >= 0) {
                     String tipo = "";
@@ -101,7 +119,7 @@ class Interpretador {
             }
             /*                                                                          */
             /*Fim da parte que analisa se a linha se trata de uma declaração de variável*/ 
-
+			
 
             
     }
@@ -138,8 +156,4 @@ class Interpretador {
             }
         }
     }
-
-
-
-    
 }

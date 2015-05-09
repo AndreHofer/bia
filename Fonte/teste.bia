@@ -1,9 +1,15 @@
 #fazendo um comentário
+<<<<<<< HEAD
 ###### não aceita codigo depois do comentario
 
 int marcelo = 2;
+=======
+### não aceita codigo depois do comentario
+
+int z;
+>>>>>>> a07004fdd5bbd35ea921633a6ce79a885a2ec550
 int a= 3 + 2;
-int b= 3-2;
+int b= 5-2;
 int c= 3*2;
 int d =  3  /2;
 int e=5%2;
@@ -13,4 +19,10 @@ double h= 3*2;
 double i =   3 /2;
 double j=5.3%2;
 
+imprime (teste,que,    nao  ,    funciona, ,nao,deu);#encontra 14 virgulas, onde?????????
 
+
+
+#a=6+2;     //nao funciona ainda
+#int k, l=3;// retorna k=0, l=3, não deveria retornar k=3 e l=3?
+#int m=l;   //não aceita
