@@ -1,3 +1,4 @@
+import java.util.Scanner;
 class Variavel{
 	private String nome;
 	
@@ -36,7 +37,7 @@ class Variavel{
 					linhaAtual = linhaAtual.replaceAll("double","double ");
 					linhaQuebrada = linhaAtual.split(" ");
 		}
-		// parte separada da declaração, int  =  linhaQuebrada1>>a + b 
+		// parte separada da declaração, int  =  linhaQuebrada1>>a + b
 		String variavelDeclarada = linhaQuebrada[1];
 
 		if(!(linhaAtual.indexOf(",") >= 0)) {
@@ -48,7 +49,7 @@ class Variavel{
 						}
 					//retornaVariavel.setNome(variavelDeclarada);
 					//System.out.println(variavelDeclarada);
-					if (retornaVariavel instanceof Inteiro) {
+				if (retornaVariavel instanceof Inteiro) {
 					retornaVariavel = fazSet(variavelDeclarada,"inteiro");
 				}else if(retornaVariavel instanceof Numeral) {
 					retornaVariavel = fazSet(variavelDeclarada,"double");
@@ -87,7 +88,17 @@ class Variavel{
 				nomeValor[1] = "";
 			}
 		}
-		//System.out.println(nomeValor[0]+" "+nomeValor[1]); 
+		/*Aqui ele faz a leitura do teclado, no caso de uma declaração de variavel*/
+		if(nomeValor[1].equals("(escreve)")){
+			Scanner scanner = new Scanner(System.in);
+			if(tipo.equals("inteiro")) {
+				nomeValor[1] = scanner.nextLine();
+			}else if(tipo.equals("double")) {
+				nomeValor[1] = scanner.nextLine();
+			}else if(tipo.equals("string")) {
+				nomeValor[1] = scanner.nextLine();
+			}
+		}
 		if(tipo.equals("inteiro")) {
 			Inteiro estado = new Inteiro();
 			estado.setNome(nomeValor[0]);

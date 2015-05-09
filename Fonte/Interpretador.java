@@ -7,7 +7,7 @@
  *
  * Por Fernando Bevilacqua <fernando.bevilacqua@uffs.edu.br>
  */
-
+ 
 class Interpretador {
     private String linhas[];
     /*A ideia é criar um vetor de variáveis que fique
@@ -96,9 +96,7 @@ class Interpretador {
 					}
 				}
 			}
-			System.out.print("\n");
-		}else if(linhaAtual.indexOf("escreve") >= 0){
-				
+			System.out.print("\n");	
 		}else if(( (linhaAtual.indexOf("int") >= 0)) || ( linhaAtual.indexOf("double") >= 0)  || 
 			(linhaAtual.indexOf("string") >= 0)) {
 			// Se tem vírgula preciso quebrar em partes e mandar para análise igual
