@@ -54,6 +54,7 @@ class Interpretador {
             String linhaAtual;
             linhaAtual = l;
             int pos = 0 ;
+            
             /* Aqui eu sei se a linha é uma declaração de variável */
             if (linhaAtual.indexOf("#")>=0){
 				comenta=linhaAtual.split("#+");
