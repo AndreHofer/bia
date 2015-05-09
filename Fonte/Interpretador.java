@@ -50,77 +50,95 @@ class Interpretador {
 
     
     public void analisaLinha(String l) {
-			String[] comenta = new String[2];
-            String linhaAtual;
-            linhaAtual = l;
-            int pos = 0 ;
-            /* Aqui eu sei se a linha é uma declaração de variável */
-            if (linhaAtual.indexOf("#")>=0){
-				comenta=linhaAtual.split("#+");
-				linhaAtual=comenta[0];
-			}
-			if(linhaAtual.indexOf("imprime") >= 0){
-				int n=(1+linhaAtual.indexOf(","));
-				int a= 0;
-				String[] impressao = new String[n];
-				String[] parte = new String[2];
-				parte=linhaAtual.split ("\\(");
-				impressao= parte[1].split (",");
-				impressao[6] = impressao[6].replaceAll("\\);",""); //[n], não 6
-				System.out.println(n);
-				while(a<=n){
-					System.out.println(a);
-					System.out.println(impressao[a]);
-					a++;
+		String[] comenta = new String[2];
+        String linhaAtual;
+        linhaAtual = l;
+        int pos = 0 ;
+        /* Aqui eu sei se a linha é uma declaração de variável */
+        if (linhaAtual.indexOf("#")>=0){
+			comenta=linhaAtual.split("#+");
+			linhaAtual=comenta[0];
+		}
+		if(linhaAtual.indexOf("imprime") >= 0){
+			int n= linhaAtual.length() - linhaAtual.replaceAll("\\|","").length();
+			String[] impressao = new String[n];
+			String[] parte = new String[2];
+			parte=linhaAtual.split ("\\(");
+			impressao= parte[1].split ("\\|");
+			impressao[n] = impressao[n].replaceAll("\\);",""); 
+			//System.out.println(n);
+			for(int a=0;a<=n;a++){
+				if(impressao[a].indexOf("'") >=0 ){
+					int m= impressao[a].length() - impressao[a].replaceAll("'","").length();
+					String[] imprime = new String[m];
+					imprime= impressao[a].split ("'");
+					if(m>=2){
+						System.out.print(imprime[1]);
+					}
+				}else{
+					impressao[a]=impressao[a].replaceAll(" ","");
+					for(int y = 0;((y < 2000) &&( atributos[y].getNome()!= null)); y++) {
+						if(atributos[y].getNome().equals(impressao[a])){
+							if(atributos[y] instanceof Inteiro) {
+								Inteiro v = (Inteiro) atributos[y];
+								System.out.print(v.getInteiro());   
+							}
+							if(atributos[y] instanceof Escrita) {
+								Escrita v = (Escrita) atributos[y];
+								System.out.print(v.getEscrita());   
+							}
+							if(atributos[y] instanceof Numeral) {
+								Numeral v = (Numeral) atributos[y];
+								System.out.print(v.getNumeral());   
+							}
+						}
+
+					}
 				}
-				System.out.print("\n");
+			}
+			System.out.print("\n");
+		}else if(linhaAtual.indexOf("escreve") >= 0){
 				
-			}else if(linhaAtual.indexOf("escreve") >= 0){
-				
-			}else if(( (linhaAtual.indexOf("int") >= 0)) || ( linhaAtual.indexOf("double") >= 0)  || 
-					 (linhaAtual.indexOf("string") >= 0)) {
-					// Se tem vírgula preciso quebrar em partes e mandar para análise igual
-                if(l.indexOf(",") >= 0) {
-                    String tipo = "";
-                    String[] vetorTamanho = l.split(",");
-                    int tamanhoVetor = vetorTamanho.length;
-                    if(linhaAtual.indexOf("int") >= 0) {
-                        tipo = "int";
-                        //Removo espaços vazios, \\s ; e \"
-                        linhaAtual = linhaAtual.replaceAll("[\\s;\"]",""); 
-                        linhaAtual = linhaAtual.replaceAll("int","");
-                    }else if(linhaAtual.indexOf("string") >=0 ) {
-                        tipo = "string";
-                        linhaAtual = linhaAtual.replaceAll("[\\s;\"]","");
-                        linhaAtual = linhaAtual.replaceAll("string","");
-                    }else if(linhaAtual.indexOf("double") >=0 ) {
-                        tipo = "double";
-                        linhaAtual = linhaAtual.replaceAll("[\\s;\"]","");
-                        linhaAtual = linhaAtual.replaceAll("double","");
-                    }
-                    vetorTamanho = linhaAtual.split(",");
-                    Variavel var = new Variavel();
-					/*Eu tenho todas as variáveis quebradas em vetor tamanho, e o seu repsectivo tipo na variável tipo 
-					 * então mando uma por vez ser tratada e em seguida chamo a função de inserção no vetor de variáveis 
-					 * do interpretador */
-                   for(int i = 0; i < tamanhoVetor; i++) {
-                        var = var.tratarDeclaracaoVariavel(tipo+vetorTamanho[i]);
-                        this.inserirVariavel(var);
-                    } 
-                    //System.out.println(tipo+vetorTamanho[0]);
+		}else if(( (linhaAtual.indexOf("int") >= 0)) || ( linhaAtual.indexOf("double") >= 0)  || 
+			(linhaAtual.indexOf("string") >= 0)) {
+			// Se tem vírgula preciso quebrar em partes e mandar para análise igual
+			if(l.indexOf(",") >= 0) {
+				String tipo = "";
+				String[] vetorTamanho = l.split(",");
+				int tamanhoVetor = vetorTamanho.length;
+				if(linhaAtual.indexOf("int") >= 0) {
+					tipo = "int";
+					//Removo espaços vazios, \\s ; e \"
+					linhaAtual = linhaAtual.replaceAll("[\\s;\"]",""); 
+					linhaAtual = linhaAtual.replaceAll("int","");
+				}else if(linhaAtual.indexOf("string") >=0 ) {
+					tipo = "string";
+					linhaAtual = linhaAtual.replaceAll("[\\s;\"]","");
+					linhaAtual = linhaAtual.replaceAll("string","");
+				}else if(linhaAtual.indexOf("double") >=0 ) {
+					tipo = "double";
+					linhaAtual = linhaAtual.replaceAll("[\\s;\"]","");
+					linhaAtual = linhaAtual.replaceAll("double","");
+				}
+				vetorTamanho = linhaAtual.split(",");
+				Variavel var = new Variavel();
+				/*Eu tenho todas as variáveis quebradas em vetor tamanho, e o seu repsectivo tipo na variável tipo 
+				* então mando uma por vez ser tratada e em seguida chamo a função de inserção no vetor de variáveis 
+				* do interpretador */
+				for(int i = 0; i < tamanhoVetor; i++) {
+					var = var.tratarDeclaracaoVariavel(tipo+vetorTamanho[i]);
+					this.inserirVariavel(var);
+				} 
+				//System.out.println(tipo+vetorTamanho[0]);
 
 
-                }else {
-                  Variavel var = new Variavel();
-                  var = var.tratarDeclaracaoVariavel(linhaAtual);
-                  this.inserirVariavel(var);
-                }
-            }
-            /*                                                                          */
-            /*Fim da parte que analisa se a linha se trata de uma declaração de variável*/ 
-			
-
-            
+			}else {
+				Variavel var = new Variavel();
+				var = var.tratarDeclaracaoVariavel(linhaAtual);
+				this.inserirVariavel(var);
+			}
+		}
+		/*Fim da parte que analisa se a linha se trata de uma declaração de variável*/         
     }
 
     public void inserirVariavel(Variavel var) {
