@@ -1,4 +1,7 @@
 #fazendo um comentário
+###### não aceita codigo depois do comentario
+
+int marcelo = 2;
 ### não aceita codigo depois do comentario
 
 int z;
