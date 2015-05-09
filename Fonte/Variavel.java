@@ -42,21 +42,19 @@ class Variavel{
 
 		if(!(linhaAtual.indexOf(",") >= 0)) {
 			if(!(linhaAtual.indexOf("=") >= 0)) {
-				
-					//System.out.println(variavelDeclarada);
-					if(variavelDeclarada.indexOf(";") >= 0) {
+				//System.out.println(variavelDeclarada);
+				if(variavelDeclarada.indexOf(";") >= 0) {
 					variavelDeclarada = variavelDeclarada.replaceAll(";","");
-						}
-					//retornaVariavel.setNome(variavelDeclarada);
-					//System.out.println(variavelDeclarada);
+				}
+				//retornaVariavel.setNome(variavelDeclarada);
+				//System.out.println(variavelDeclarada);
 				if (retornaVariavel instanceof Inteiro) {
 					retornaVariavel = fazSet(variavelDeclarada,"inteiro");
 				}else if(retornaVariavel instanceof Numeral) {
 					retornaVariavel = fazSet(variavelDeclarada,"double");
 				}else if(retornaVariavel instanceof Escrita) {
 					retornaVariavel = fazSet(variavelDeclarada,"string");
-					}
-				
+				}
 			}else{
 				if (retornaVariavel instanceof Inteiro) {
 					retornaVariavel = fazSet(variavelDeclarada,"inteiro");
@@ -65,7 +63,6 @@ class Variavel{
 				}else if(retornaVariavel instanceof Escrita) {
 					retornaVariavel = fazSet(variavelDeclarada,"string");
 				}
-				
 			}
 		}
 			return retornaVariavel;
@@ -90,14 +87,7 @@ class Variavel{
 		}
 		/*Aqui ele faz a leitura do teclado, no caso de uma declaração de variavel*/
 		if(nomeValor[1].equals("(escreve)")){
-			Scanner scanner = new Scanner(System.in);
-			if(tipo.equals("inteiro")) {
-				nomeValor[1] = scanner.nextLine();
-			}else if(tipo.equals("double")) {
-				nomeValor[1] = scanner.nextLine();
-			}else if(tipo.equals("string")) {
-				nomeValor[1] = scanner.nextLine();
-			}
+			nomeValor[1]= escrever(nomeValor[1], tipo);
 		}
 		if(tipo.equals("inteiro")) {
 			Inteiro estado = new Inteiro();
@@ -156,6 +146,18 @@ class Variavel{
 		
 		return estadoAtual;
 	}
-
-	
+	public String escrever(String nomeValor, String tipo){
+		Scanner scanner = new Scanner(System.in);
+		if(tipo.equals("inteiro")) {
+			System.out.println("Digite:");//teste
+			nomeValor = scanner.nextLine();
+		}else if(tipo.equals("double")) {
+			System.out.println("Digite:");//teste
+			nomeValor = scanner.nextLine();
+		}else if(tipo.equals("string")) {
+			System.out.println("Digite:");//teste
+			nomeValor = scanner.nextLine();
+		}
+		return nomeValor;
+	}
 }

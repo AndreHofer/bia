@@ -1,8 +1,8 @@
 #fazendo um comentário
-###### não aceita codigo depois do comentario
+# não aceita codigo depois do comentario
+### não aceita codigo depois do comentario
 
 int marcelo = 2;
-### não aceita codigo depois do comentario
 string ja = hahahaha;
 int z;
 int a= 3 + 2;
@@ -15,10 +15,10 @@ double g= 3-2;
 double h= 3*2;
 double i =   3 /2;
 double j=5.3%2;
-a = 5 + 3;
+a = 11 + 3;
 imprime (' variavel a:'| a |' variavel ja:'|   ja |'   deu certo!'));
 string andre=(escreve);
-
+ja=(escreve);
 
 
 

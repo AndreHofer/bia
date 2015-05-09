@@ -62,54 +62,17 @@ class Interpretador {
 		if(linhaAtual.indexOf("=") >= 0) {
 			if(!(linhaAtual.indexOf("int") >= 0) && !(linhaAtual.indexOf("double") >= 0) &&
 				!(linhaAtual.indexOf("string") >= 0)) {
-				if((linhaAtual.indexOf("+")>=0) || (linhaAtual.indexOf("-")>=0) ||
-                    (linhaAtual.indexOf("*")>=0) || (linhaAtual.indexOf("/")>=0) ) {
+				if((linhaAtual.indexOf("+")>=0) || (linhaAtual.indexOf("-")>=0) ||(linhaAtual.indexOf("*")>=0)|| (linhaAtual.indexOf("/")>=0)|| (linhaAtual.indexOf("%")>=0)|| (linhaAtual.indexOf("(escreve)")>=0)) {
 					String[] dividido = linhaAtual.split("=");
 					String tipo_var = getTipoVariavel(dividido[0]); 
 					linhaAtual = tipo_var + " " + linhaAtual;
-                                   
 				}                            
 			}
 		}
-                
             /*Fim */
+            /*Função de imprimir*/
 		if(linhaAtual.indexOf("imprime") >= 0){
-			int n= linhaAtual.length() - linhaAtual.replaceAll("\\|","").length();
-			String[] impressao = new String[n];
-			String[] parte = new String[2];
-			parte=linhaAtual.split ("\\(");
-			impressao= parte[1].split ("\\|");
-			impressao[n] = impressao[n].replaceAll("\\);",""); 
-			//System.out.println(n);
-			for(int a=0;a<=n;a++){
-				if(impressao[a].indexOf("'") >=0 ){
-					int m= impressao[a].length() - impressao[a].replaceAll("'","").length();
-					String[] imprime = new String[m];
-					imprime= impressao[a].split ("'");
-					if(m>=2){
-						System.out.print(imprime[1]);
-					}
-				}else{
-					impressao[a]=impressao[a].replaceAll(" ","");
-					for(int y = 0;((y < 2000) &&( atributos[y].getNome()!= null)); y++) {
-						if(atributos[y].getNome().equals(impressao[a])){
-							if(atributos[y] instanceof Inteiro) {
-								Inteiro v = (Inteiro) atributos[y];
-								System.out.print(v.getInteiro());   
-							}
-							if(atributos[y] instanceof Escrita) {
-								Escrita v = (Escrita) atributos[y];
-								System.out.print(v.getEscrita());   
-							}
-							if(atributos[y] instanceof Numeral) {
-								Numeral v = (Numeral) atributos[y];
-								System.out.print(v.getNumeral());   
-							}
-						}
-					}
-				}
-			}
-			System.out.print("\n");	
+ 			imprimir( linhaAtual);
 		}else if(( (linhaAtual.indexOf("int") >= 0)) || ( linhaAtual.indexOf("double") >= 0)  || 
 			(linhaAtual.indexOf("string") >= 0)) {
 			// Se tem vírgula preciso quebrar em partes e mandar para análise igual
@@ -215,4 +178,43 @@ class Interpretador {
         }
     return v;
     }
+    
+    public void imprimir(String linhaAtual){		
+		int n= linhaAtual.length() - linhaAtual.replaceAll("\\|","").length();
+		String[] impressao = new String[n];
+		String[] parte = new String[2];
+		parte=linhaAtual.split ("\\(");
+		impressao= parte[1].split ("\\|");
+		impressao[n] = impressao[n].replaceAll("\\);",""); 
+		//System.out.println(n);
+		for(int a=0;a<=n;a++){
+			if(impressao[a].indexOf("'") >=0 ){
+				int m= impressao[a].length() - impressao[a].replaceAll("'","").length();
+				String[] imprime = new String[m];
+				imprime= impressao[a].split ("'");
+				if(m>=2){
+					System.out.print(imprime[1]);
+				}
+			}else{
+				impressao[a]=impressao[a].replaceAll(" ","");
+				for(int y = 0;((y < 2000) &&( atributos[y].getNome()!= null)); y++) {
+					if(atributos[y].getNome().equals(impressao[a])){
+						if(atributos[y] instanceof Inteiro) {
+							Inteiro v = (Inteiro) atributos[y];
+							System.out.print(v.getInteiro());   
+						}
+						if(atributos[y] instanceof Escrita) {
+							Escrita v = (Escrita) atributos[y];
+							System.out.print(v.getEscrita());   
+						}
+						if(atributos[y] instanceof Numeral) {
+							Numeral v = (Numeral) atributos[y];
+							System.out.print(v.getNumeral());   
+						}
+					}
+				}
+			}
+		}
+		System.out.print("\n");
+	}
 }
