@@ -106,6 +106,7 @@ class Variavel{
 				if (nomeValor[1].indexOf("+")>= 0){
 					opera=nomeValor[1].split("\\+");
 					estado.soma((Integer.valueOf(opera[0]).intValue()),Integer.valueOf(opera[1]).intValue());
+					
 				} else if(nomeValor[1].indexOf("-")>= 0){
 					opera=nomeValor[1].split("-");
 					estado.subtrai((Integer.valueOf(opera[0]).intValue()),Integer.valueOf(opera[1]).intValue());
@@ -129,6 +130,7 @@ class Variavel{
 			if ((nomeValor[1].indexOf("+")>= 0)||(nomeValor[1].indexOf("-")>= 0)||(nomeValor[1].indexOf("*")>= 0)||(nomeValor[1].indexOf("/")>= 0)||(nomeValor[1].indexOf("%")>= 0)) {
 				if (nomeValor[1].indexOf("+")>= 0){
 					opera=nomeValor[1].split("\\+");
+					System.out.println("v1 "+opera[0]+" " +opera[1]);
 					estado.soma(Double.valueOf(opera[0]).doubleValue(),Double.valueOf(opera[1]).doubleValue());
 				} else if(nomeValor[1].indexOf("-")>= 0){
 					opera=nomeValor[1].split("-");
@@ -156,6 +158,18 @@ class Variavel{
 		
 		return estadoAtual;
 	}
+
+	/*
+	public String buscarValor(String s) {
+		String dado = s;
+		if((s.matches ("^-?\\d+$")) || (s.matches("^-?\\d*\\.\\d+$ | ^-?\\d+$"))) {
+			return dado;
+		}else{
+		String valor = "0";
+		 valor = Interpretador.buscarValorVariavel(dado);
+		return  valor;
+		}
+	}*/
 
 	
 }

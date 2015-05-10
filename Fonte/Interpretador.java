@@ -32,7 +32,7 @@ class Interpretador {
 		}
         //Imprimindo o conteúdo do vetor de variáveis
         // Somente para teste
-        for(int y = 0;y < 2000 && atributos[y].getNome() != null; y++) {
+         for(int y = 0;y < 2000 && atributos[y].getNome() != null; y++) {
 			if(atributos[y] instanceof Inteiro) {
 				Inteiro n = (Inteiro) atributos[y];
 				System.out.println(y+" "+n.getNome()+ " "+ n.getInteiro());   
@@ -45,7 +45,7 @@ class Interpretador {
 				Numeral n = (Numeral) atributos[y];
 				System.out.println(y+" "+n.getNome()+ " "+ n.getNumeral());   
 			}
-		}
+		} 
     }
 
     
@@ -65,11 +65,39 @@ class Interpretador {
                             !(linhaAtual.indexOf("string") >= 0)) {
                         if((linhaAtual.indexOf("+")>=0) || (linhaAtual.indexOf("-")>=0) ||
                         (linhaAtual.indexOf("*")>=0) || (linhaAtual.indexOf("/")>=0) ) {
+                        		linhaAtual = linhaAtual.replaceAll(";","");
                                 String[] dividido = linhaAtual.split("=");
                                 //dividido[0] = dividido[0].replaceAll(" ","");
-                                String tipo_var = getTipoVariavel(dividido[0]); 
-                                linhaAtual = tipo_var + " " + linhaAtual;
+                                String tipo_var = getTipoVariavel(dividido[0]);
+                                String[] recorte = null;
+                                String op = "";
+                               	if(dividido[1].indexOf("+") >= 0) {
+                                	recorte = dividido[1].split("\\+");
+                                	op = "+";
+                                }else if(dividido[1].indexOf("-") >= 0) {
+                                	recorte = dividido[1].split("-");
+                                	op = "-";
+                                }else if(dividido[1].indexOf("*") >= 0) {
+                                	recorte = dividido[1].split("\\*");
+                                	op = "*";
+                                }else if(dividido[1].indexOf("/") >= 0) {
+                                	recorte = dividido[1].split("/");
+                                	op = "/";
+                                }else if(dividido[1].indexOf("%") >= 0) {
+                                	recorte = dividido[1].split("%");
+                                	op = "%";
+                                }
+                                recorte[0] = buscarValorVariavel(recorte[0]);
+                                recorte[1] = buscarValorVariavel(recorte[1]);
+                                linhaAtual = tipo_var + " " + dividido[0] +" = "+recorte[0]+op+recorte[1];
+                                
                                    
+                              }else {
+                              		linhaAtual = linhaAtual.replaceAll(";","");
+                              		String[] dividido = linhaAtual.split("=");
+                                	String tipo_var = getTipoVariavel(dividido[0]);
+                            		linhaAtual = tipo_var + " " + dividido[0] + "="+buscarValorVariavel(dividido[1]);
+                                	
                               }                            
                             }
                        }
@@ -198,18 +226,18 @@ class Interpretador {
         }
     }
      public String getTipoVariavel(String var) {
-        String v = var;
+     	String v = var;
         boolean status = false;
-        for(int i = 0; status == false; i++ ) {
+		for(int i = 0; status == false; i++ ) {
            if(atributos[i].getNome() != null) {
            
             if(atributos[i].getNome().replaceAll(" ","").equals(v.replaceAll(" ",""))) {
                 if(atributos[i] instanceof Inteiro) {
-                    v = "int";
+               	  v = "int";
                 }else if(atributos[i] instanceof Escrita) {
                     v = "string";
                 }else if(atributos[i] instanceof Numeral) {
-                    v = "double";
+                  v = "double";
                 }
                 status = true;
                 break;
@@ -220,6 +248,45 @@ class Interpretador {
                 break;
             }
         }
-    return v;
+    
+    	return v;
     }
+
+    public  String buscarValorVariavel(String s) {
+    	String st = s.replaceAll(" ","");
+    	String busca = s.replaceAll(" ","");
+    	boolean status = false;
+    	st = "0";
+		for(int i = 0; status == false; i++ ) {
+           if(atributos[i].getNome() != null) {
+          
+            if(atributos[i].getNome().replaceAll(" ","").equals(busca)) {
+            		if(atributos[i] instanceof Inteiro) {
+                		Inteiro n = (Inteiro) atributos[i];
+               	  		 st = ""+n.getInteiro()+"";
+               	}else if(atributos[i] instanceof Escrita) {
+                    	Escrita n = (Escrita) atributos[i];
+               	  		 st = ""+n.getEscrita()+"";
+                }else if(atributos[i] instanceof Numeral) {
+                  		Numeral n = (Numeral) atributos[i];
+               	  		 st = ""+n.getNumeral()+"";
+                }
+                status = true;
+                break;
+            }
+        }
+            if(i == 1999) {
+                status = true;
+                break;
+            }
+        }
+        if(st == "0") {
+        	
+        	return s;
+        }
+        return st;
+    }
+
+
+
 }
