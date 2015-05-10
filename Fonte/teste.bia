@@ -3,7 +3,7 @@
 
 int marcelo = 2;
 ### não aceita codigo depois do comentario
-string ja = hahahaha;
+string ja = "hahahaha";
 int z;
 int a= 3 + 2;
 int b= 5-2;
@@ -20,9 +20,12 @@ imprime (' variavel a:'| a |' variavel ja:'|   ja |'   deu certo!'));
 string andre=(escreve);
 
 
+marcelo = 6;
 
 
 #a=6+2;      //nao funciona ainda
-ja=(escreve);//nao funciona ainda, depende das operações com numeros 
+#ja=(escreve);//nao funciona ainda, depende das operações com numeros 
 #int k, l=3; // retorna k=0, l=3, não deveria retornar k=3 e l=3?
 #int m=l;    //não aceita
+
+
