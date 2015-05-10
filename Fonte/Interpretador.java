@@ -22,7 +22,6 @@ class Interpretador {
         }
     }
 
-   
     //Varrendo linha por linha, e chamando a função analisaLinha, para determinar do que se trata.
     public void tratamento(String l[]) {
 		this.linhas = l;
@@ -60,11 +59,13 @@ class Interpretador {
 			linhaAtual=comenta[0];
 		}
 		/* Inserindo tipo para tratar as expressões */
+
             if(linhaAtual.indexOf("=") >= 0) {
                     if(!(linhaAtual.indexOf("int") >= 0) && !(linhaAtual.indexOf("double") >= 0) &&
                             !(linhaAtual.indexOf("string") >= 0)) {
                         if((linhaAtual.indexOf("+")>=0) || (linhaAtual.indexOf("-")>=0) ||
-                        (linhaAtual.indexOf("*")>=0) || (linhaAtual.indexOf("/")>=0) ) {
+                        (linhaAtual.indexOf("*")>=0) || (linhaAtual.indexOf("/")>=0)
+                        || (linhaAtual.indexOf("%")>=0)) {
                         		linhaAtual = linhaAtual.replaceAll(";","");
                                 String[] dividido = linhaAtual.split("=");
                                 //dividido[0] = dividido[0].replaceAll(" ","");
@@ -93,54 +94,26 @@ class Interpretador {
                                 
                                    
                               }else {
+                              	if((linhaAtual.indexOf("(escreve)")>=0)) {
+                              		linhaAtual = linhaAtual.replaceAll(";","");	
+                              		String[] dividido = linhaAtual.split("=");
+                                	String tipo_var = getTipoVariavel(dividido[0]);
+                                	linhaAtual = tipo_var+" " + linhaAtual;
+                                }else{
                               		linhaAtual = linhaAtual.replaceAll(";","");
                               		String[] dividido = linhaAtual.split("=");
                                 	String tipo_var = getTipoVariavel(dividido[0]);
                             		linhaAtual = tipo_var + " " + dividido[0] + "="+buscarValorVariavel(dividido[1]);
-                                	
+                              	}
                               }                            
                             }
                        }
                 
-            /*Fim */
-		if(linhaAtual.indexOf("imprime") >= 0){
-			int n= linhaAtual.length() - linhaAtual.replaceAll("\\|","").length();
-			String[] impressao = new String[n];
-			String[] parte = new String[2];
-			parte=linhaAtual.split ("\\(");
-			impressao= parte[1].split ("\\|");
-			impressao[n] = impressao[n].replaceAll("\\);",""); 
-			//System.out.println(n);
-			for(int a=0;a<=n;a++){
-				if(impressao[a].indexOf("'") >=0 ){
-					int m= impressao[a].length() - impressao[a].replaceAll("'","").length();
-					String[] imprime = new String[m];
-					imprime= impressao[a].split ("'");
-					if(m>=2){
-						System.out.print(imprime[1]);
-					}
-				}else{
-					impressao[a]=impressao[a].replaceAll(" ","");
-					for(int y = 0;((y < 2000) &&( atributos[y].getNome()!= null)); y++) {
-						if(atributos[y].getNome().equals(impressao[a])){
-							if(atributos[y] instanceof Inteiro) {
-								Inteiro v = (Inteiro) atributos[y];
-								System.out.print(v.getInteiro());   
-							}
-							if(atributos[y] instanceof Escrita) {
-								Escrita v = (Escrita) atributos[y];
-								System.out.print(v.getEscrita());   
-							}
-							if(atributos[y] instanceof Numeral) {
-								Numeral v = (Numeral) atributos[y];
-								System.out.print(v.getNumeral());   
-							}
-						}
 
-					}
-				}
-			}
-			System.out.print("\n");	
+            /*Fim */
+            /*Função de imprimir*/
+		if(linhaAtual.indexOf("imprime") >= 0){
+ 			imprimir( linhaAtual);
 		}else if(( (linhaAtual.indexOf("int") >= 0)) || ( linhaAtual.indexOf("double") >= 0)  || 
 			(linhaAtual.indexOf("string") >= 0)) {
 			// Se tem vírgula preciso quebrar em partes e mandar para análise igual
@@ -184,50 +157,48 @@ class Interpretador {
     }
 
     public void inserirVariavel(Variavel var) {
-    	
 		// -1 é só para inicializar
         int caminho = -1;
         boolean status = false;
         for(int y = 0; y < 2000; y++) {
     		if(atributos[y].getNome() != null) {
-    		if(atributos[y].getNome().replaceAll(" ","").equals(var.getNome().replaceAll(" ",""))) {
-    			caminho = y;
+				if(atributos[y].getNome().replaceAll(" ","").equals(var.getNome().replaceAll(" ",""))) {
+					caminho = y;
     			}
     		}
     	}
     	if(caminho == -1) {
-        for(int i = 0;status == false; i++) {
-           // Descobrindo uma variável do vetor que tenha valor null e checando se o status é false
-            if(atributos[i].getNome() == null && status == false) {
-				//salvo o indíce correspondente que está disponível para inserção
-                caminho = i;
-                status = true;
-                //mudo o status para true, indicando que sei onde inserir
-        		    }
-     		   }
-    		}
+			for(int i = 0;status == false; i++) {
+				// Descobrindo uma variável do vetor que tenha valor null e checando se o status é false
+				if(atributos[i].getNome() == null && status == false) {
+					//salvo o indíce correspondente que está disponível para inserção
+					caminho = i;
+					status = true;
+					//mudo o status para true, indicando que sei onde inserir
+				}
+			}
+		}
         if(caminho != -1) {
 			//analiso o tipo da variável que recebi e instancio ela respectivamente no vetor de variáveis e atribuo a variável na posição escolhida 
-        if(var instanceof Inteiro) {
-            Inteiro n = (Inteiro) var;
-            atributos[caminho] = new Inteiro();
-            atributos[caminho] = n;
-            
-
-        }else if(var instanceof Escrita) {
-            Escrita n = (Escrita) var;
-            atributos[caminho] = new Escrita();
-            atributos[caminho] = n;
-        }else if(var instanceof Numeral) {
-            Numeral n = (Numeral) var;
-            atributos[caminho] = new Numeral();
-            atributos[caminho] = n;
+			if(var instanceof Inteiro) {
+				Inteiro n = (Inteiro) var;
+				atributos[caminho] = new Inteiro();
+				atributos[caminho] = n;
+			}else if(var instanceof Escrita) {
+				Escrita n = (Escrita) var;
+				atributos[caminho] = new Escrita();
+				atributos[caminho] = n;
+			}else if(var instanceof Numeral) {
+				Numeral n = (Numeral) var;
+				atributos[caminho] = new Numeral();
+				atributos[caminho] = n;
             }
         }
     }
      public String getTipoVariavel(String var) {
      	String v = var;
         boolean status = false;
+
 		for(int i = 0; status == false; i++ ) {
            if(atributos[i].getNome() != null) {
            
@@ -275,6 +246,7 @@ class Interpretador {
                 break;
             }
         }
+
             if(i == 1999) {
                 status = true;
                 break;
@@ -286,7 +258,43 @@ class Interpretador {
         }
         return st;
     }
-
-
+    public void imprimir(String linhaAtual){		
+		int n= linhaAtual.length() - linhaAtual.replaceAll("\\|","").length();
+		String[] impressao = new String[n];
+		String[] parte = new String[2];
+		parte=linhaAtual.split ("\\(");
+		impressao= parte[1].split ("\\|");
+		impressao[n] = impressao[n].replaceAll("\\);",""); 
+		//System.out.println(n);
+		for(int a=0;a<=n;a++){
+			if(impressao[a].indexOf("'") >=0 ){
+				int m= impressao[a].length() - impressao[a].replaceAll("'","").length();
+				String[] imprime = new String[m];
+				imprime= impressao[a].split ("'");
+				if(m>=2){
+					System.out.print(imprime[1]);
+				}
+			}else{
+				impressao[a]=impressao[a].replaceAll(" ","");
+				for(int y = 0;((y < 2000) &&( atributos[y].getNome()!= null)); y++) {
+					if(atributos[y].getNome().equals(impressao[a])){
+						if(atributos[y] instanceof Inteiro) {
+							Inteiro v = (Inteiro) atributos[y];
+							System.out.print(v.getInteiro());   
+						}
+						if(atributos[y] instanceof Escrita) {
+							Escrita v = (Escrita) atributos[y];
+							System.out.print(v.getEscrita());   
+						}
+						if(atributos[y] instanceof Numeral) {
+							Numeral v = (Numeral) atributos[y];
+							System.out.print(v.getNumeral());   
+						}
+					}
+				}
+			}
+		}
+		System.out.print("\n");
+	}
 
 }
