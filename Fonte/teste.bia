@@ -31,3 +31,11 @@ marcelo = 6;
 #int m=l;    //não aceita
 
 
+int w = 2;
+
+se :w >= 1: [
+	string marcelo = "eu";
+	double auqwid = 1.6;
+];
+
+
