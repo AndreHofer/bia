@@ -34,28 +34,28 @@ class Interpretador {
     			quebrar = quebrar[1].split(";");
     			
     			analisaLinha(quebrar[0]);
-    			 String[] quebrar2 = quebrar[0].split("=");
-    			  quebrar2 = quebrar2[0].split(" ");
+    			String[] quebrar2 = quebrar[0].split("=");
+    			quebrar2 = quebrar2[0].split(" ");
     			boolean estado = true;
     			//System.out.println("var e: "+quebrar2[1]);
     			int y = i + 1;
-    				boolean status = false;
-    				while(status == false) {
-    					if(this.linhas[y].indexOf("];")>=0) {
-    						break;
-    					}
-    					y++;
+    			boolean status = false;
+    			while(status == false) {
+    				if(this.linhas[y].indexOf("];")>=0) {
+    					break;
     				}
-    				int andar = (y - i) - 1;
-    				
+    				y++;
+    			}
+    			int andar = (y - i) - 1;
+    			
     			do{
     				
-    					analisaLinha(quebrar2[1]+"= "+quebrar2[1]+"+ 1" );
-    					Fluxo analiseFluxo = new Fluxo();
+    				analisaLinha(quebrar2[1]+"= "+quebrar2[1]+"+ 1" );
+    				Fluxo analiseFluxo = new Fluxo();
     				analiseFluxo.analiseFluxo(" :"+quebrar[1]+": ");
 
-    		for(int e = 0; (e < analiseFluxo.dados.length) && (analiseFluxo.dados[e][0] != null);e++) {
-					analiseFluxo.dados[e][1] = buscarValorVariavel(analiseFluxo.dados[e][0]);
+    				for(int e = 0; (e < analiseFluxo.dados.length) && (analiseFluxo.dados[e][0] != null);e++) {
+    					analiseFluxo.dados[e][1] = buscarValorVariavel(analiseFluxo.dados[e][0]);
     				}
     				estado = analiseFluxo.checarCondicao(" : "+quebrar[1]+" : ");
     				if(estado == false) {
@@ -64,7 +64,7 @@ class Interpretador {
     				for(int and = i+1;and < (andar+i+1)  ;and++) {
 			  		  //System.out.println(i+"--->>"+this.linhas[and]);
     					analisaLinha(this.linhas[and]);
-    					}
+    				}
     				
     				
     			}while(estado);
@@ -72,7 +72,7 @@ class Interpretador {
     			Fluxo analiseFluxo = new Fluxo();
     			analiseFluxo.analiseFluxo(linhaAtual);
     			for(int e = 0; (e < analiseFluxo.dados.length) && (analiseFluxo.dados[e][0] != null);e++) {
-					analiseFluxo.dados[e][1] = buscarValorVariavel(analiseFluxo.dados[e][0]);
+    				analiseFluxo.dados[e][1] = buscarValorVariavel(analiseFluxo.dados[e][0]);
     			}
     			if(analiseFluxo.checarCondicao(linhaAtual)){
     				int y = i + 1;
@@ -147,7 +147,7 @@ class Interpretador {
 
     				linhaAtual = linhaAtual.replaceAll(";","");
     			String[] dividido = linhaAtual.split("=");
-                   String var = dividido[0].replaceAll(" ","");
+    			String var = dividido[0].replaceAll(" ","");
     			String tipo_var = getTipoVariavel(var);
     			String[] recorte = null;
     			String op = "";
