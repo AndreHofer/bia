@@ -15,27 +15,28 @@ class Variavel{
 	}
 	
 	/* Função tratarDeclaracaoVariavel nela eu quebro a linha e descubro os valores 
-		e retorno uma variável pronta com os dados */
+	e retorno uma variável pronta com os dados */
 	public Variavel tratarDeclaracaoVariavel(String l) {
+		
 		Variavel retornaVariavel = new Variavel();
 		String nome = "";
 		String linhaAtual = l;
 		String[] linhaQuebrada = null;
 		if(linhaAtual.indexOf("int") >= 0) {
 			retornaVariavel = new Inteiro();
-					linhaAtual = linhaAtual.replaceAll(" ","");
-					linhaAtual = linhaAtual.replaceAll("int","int ");
-					linhaQuebrada = linhaAtual.split(" ");
+			linhaAtual = linhaAtual.replaceAll(" ","");
+			linhaAtual = linhaAtual.replaceAll("int","int ");
+			linhaQuebrada = linhaAtual.split(" ");
 		}else if(linhaAtual.indexOf("string") >= 0) {
 			retornaVariavel = new Escrita();
-					linhaAtual = linhaAtual.replaceAll(" ","");
-					linhaAtual = linhaAtual.replaceAll("string","string ");
-					 linhaQuebrada = linhaAtual.split(" ");
+			linhaAtual = linhaAtual.replaceAll(" ","");
+			linhaAtual = linhaAtual.replaceAll("string","string ");
+			linhaQuebrada = linhaAtual.split(" ");
 		}else if(linhaAtual.indexOf("double") >= 0) {
 			retornaVariavel = new Numeral();
-					linhaAtual = linhaAtual.replaceAll(" ","");
-					linhaAtual = linhaAtual.replaceAll("double","double ");
-					linhaQuebrada = linhaAtual.split(" ");
+			linhaAtual = linhaAtual.replaceAll(" ","");
+			linhaAtual = linhaAtual.replaceAll("double","double ");
+			linhaQuebrada = linhaAtual.split(" ");
 		}
 		// parte separada da declaração, int  =  linhaQuebrada1>>a + b
 		String variavelDeclarada = linhaQuebrada[1];
@@ -65,7 +66,7 @@ class Variavel{
 				}
 			}
 		}
-			return retornaVariavel;
+		return retornaVariavel;
 	}
 
 	private Variavel fazSet(String linha,String tipo) {

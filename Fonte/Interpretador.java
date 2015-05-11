@@ -28,12 +28,51 @@ class Interpretador {
     	for(int i = 0; (i < this.linhas.length) && (this.linhas[i] != null); i++) {
     		String linhaAtual = this.linhas[i];
     		/*Limitar áre if */
-    		if((linhaAtual.indexOf("se") >=0) && (linhaAtual.indexOf(":") >= 0) ) {
+    		if((linhaAtual.indexOf("para")>=0) && (linhaAtual.indexOf(":")>=0)) {
+    			
+    			String quebrar[] = linhaAtual.split(":");
+    			quebrar = quebrar[1].split(";");
+    			
+    			analisaLinha(quebrar[0]);
+    			 String[] quebrar2 = quebrar[0].split("=");
+    			  quebrar2 = quebrar2[0].split(" ");
+    			boolean estado = true;
+    			//System.out.println("var e: "+quebrar2[1]);
+    			int y = i + 1;
+    				boolean status = false;
+    				while(status == false) {
+    					if(this.linhas[y].indexOf("];")>=0) {
+    						break;
+    					}
+    					y++;
+    				}
+    				int andar = (y - i) - 1;
+    				
+    			do{
+    				
+    					analisaLinha(quebrar2[1]+"= "+quebrar2[1]+"+ 1" );
+    					Fluxo analiseFluxo = new Fluxo();
+    				analiseFluxo.analiseFluxo(" :"+quebrar[1]+": ");
+
+    		for(int e = 0; (e < analiseFluxo.dados.length) && (analiseFluxo.dados[e][0] != null);e++) {
+					analiseFluxo.dados[e][1] = buscarValorVariavel(analiseFluxo.dados[e][0]);
+    				}
+    				estado = analiseFluxo.checarCondicao(" : "+quebrar[1]+" : ");
+    				if(estado == false) {
+    					break;
+    				}
+    				for(int and = i+1;and < (andar+i+1)  ;and++) {
+			  		  //System.out.println(i+"--->>"+this.linhas[and]);
+    					analisaLinha(this.linhas[and]);
+    					}
+    				
+    				
+    			}while(estado);
+    		}else if((linhaAtual.indexOf("se") >=0) && (linhaAtual.indexOf(":") >= 0) ) {
     			Fluxo analiseFluxo = new Fluxo();
     			analiseFluxo.analiseFluxo(linhaAtual);
     			for(int e = 0; (e < analiseFluxo.dados.length) && (analiseFluxo.dados[e][0] != null);e++) {
-					//System.out.println(":>"+analiseFluxo.dados[e][0]);
-    				analiseFluxo.dados[e][1] = buscarValorVariavel(analiseFluxo.dados[e][0]);
+					analiseFluxo.dados[e][1] = buscarValorVariavel(analiseFluxo.dados[e][0]);
     			}
     			if(analiseFluxo.checarCondicao(linhaAtual)){
     				int y = i + 1;
@@ -46,7 +85,7 @@ class Interpretador {
     					y++;
     				}
     				andar = (y - i) - 1;
-    				
+
     				for(int and = i+1;and < y  ;and++) {
 			  		//System.out.println("--->>"+this.linhas[and]);
     					analisaLinha(this.linhas[and]);
@@ -105,10 +144,11 @@ class Interpretador {
     			if((linhaAtual.indexOf("+")>=0) || (linhaAtual.indexOf("-")>=0) ||
     				(linhaAtual.indexOf("*")>=0) || (linhaAtual.indexOf("/")>=0)
     				|| (linhaAtual.indexOf("%")>=0)) {
+
     				linhaAtual = linhaAtual.replaceAll(";","");
     			String[] dividido = linhaAtual.split("=");
-                                //dividido[0] = dividido[0].replaceAll(" ","");
-    			String tipo_var = getTipoVariavel(dividido[0]);
+                   String var = dividido[0].replaceAll(" ","");
+    			String tipo_var = getTipoVariavel(var);
     			String[] recorte = null;
     			String op = "";
     			if(dividido[1].indexOf("+") >= 0) {
@@ -131,7 +171,7 @@ class Interpretador {
     			recorte[1] = buscarValorVariavel(recorte[1]);
     			linhaAtual = tipo_var + " " + dividido[0] +" = "+recorte[0]+op+recorte[1];
     			
-    			
+
     		}else {
     			if((linhaAtual.indexOf("(escreve)")>=0)) {
     				linhaAtual = linhaAtual.replaceAll(";","");	
@@ -139,6 +179,7 @@ class Interpretador {
     				String tipo_var = getTipoVariavel(dividido[0]);
     				linhaAtual = tipo_var+" " + linhaAtual;
     			}else{
+    				
     				linhaAtual = linhaAtual.replaceAll(";","");
     				String[] dividido = linhaAtual.split("=");
     				String tipo_var = getTipoVariavel(dividido[0]);
@@ -147,7 +188,7 @@ class Interpretador {
     		}                            
     	}
     }
-    
+
 
     /*Fim */
     /*Função de imprimir*/
@@ -187,13 +228,14 @@ class Interpretador {
 
 
 			}else {
+
 				Variavel var = new Variavel();
 				var = var.tratarDeclaracaoVariavel(linhaAtual);
 				this.inserirVariavel(var);
 			}
 		}
 		/*Fim da parte que analisa se a linha se trata de uma declaração de variável*/ 
-		
+
 	}
 
 	public void inserirVariavel(Variavel var) {
@@ -236,12 +278,12 @@ class Interpretador {
 		}
 	}
 	public String getTipoVariavel(String var) {
-		String v = var;
+		String v = var.replaceAll(" ","");
 		boolean status = false;
 
 		for(int i = 0; status == false; i++ ) {
 			if(atributos[i].getNome() != null) {
-				
+
 				if(atributos[i].getNome().replaceAll(" ","").equals(v.replaceAll(" ",""))) {
 					if(atributos[i] instanceof Inteiro) {
 						v = "int";
@@ -259,7 +301,7 @@ class Interpretador {
 				break;
 			}
 		}
-		
+
 		return v;
 	}
 
@@ -270,7 +312,7 @@ class Interpretador {
 		st = "0";
 		for(int i = 0; status == false; i++ ) {
 			if(atributos[i].getNome() != null) {
-				
+
 				if(atributos[i].getNome().replaceAll(" ","").equals(busca)) {
 					if(atributos[i] instanceof Inteiro) {
 						Inteiro n = (Inteiro) atributos[i];
@@ -293,7 +335,7 @@ class Interpretador {
 			}
 		}
 		if(st == "0") {
-			
+
 			return s;
 		}
 		return st;

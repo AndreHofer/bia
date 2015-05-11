@@ -38,4 +38,8 @@ se :w >= 1: [
 	double auqwid = 1.6;
 ];
 
+int r = 0;
 
+para :int i = 0; i < 15; i++:  [
+r= r + 1;
+];
