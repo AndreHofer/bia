@@ -183,9 +183,6 @@ class Interpretador {
 					var = var.tratarDeclaracaoVariavel(tipo+vetorTamanho[i]);
 					this.inserirVariavel(var);
 				} 
-				//System.out.println(tipo+vetorTamanho[0]);
-
-
 			}else {
 				Variavel var = new Variavel();
 				var = var.tratarDeclaracaoVariavel(linhaAtual);
@@ -305,7 +302,6 @@ class Interpretador {
 		parte=linhaAtual.split ("\\(");
 			impressao= parte[1].split ("\\|");
 			impressao[n] = impressao[n].replaceAll("\\);",""); 
-		//System.out.println(n);
 			for(int a=0;a<=n;a++){
 				if(impressao[a].indexOf("'") >=0 ){
 					int m= impressao[a].length() - impressao[a].replaceAll("'","").length();
