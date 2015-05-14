@@ -4,10 +4,11 @@
 
 int marcelo = 2;
 
-### não aceita codigo depois do comentario
+### não aceita codigo depois do comentario;
 string ja = "hahahaha";
 int z;
-int a= 3 + 2;
+int a= 
+3 + 2;
 int b= 5-2;
 int c= 3*2;
 int d =  3  /2;
@@ -17,16 +18,17 @@ double g= 3-2;
 double h= 3*2;
 double i =   3 /2;
 double j=5.3%2;
-a = 1 + 3;
+a = a + 3;
 imprime (' variavel a:'| a |' variavel ja:'|   ja |'   deu certo!');
 string andre=(escreve);
 ja= andre;
 
-marcelo = 6;
 
 
-#int l = 3; ## retorna k=0, l=3, não deveria retornar k=3 e l=3?
-#int m=1;   # não aceita
+g = h;
+a++;
+
+int babaca;
 
 
 int w = 3;
@@ -34,7 +36,6 @@ int w = 3;
 se :w >= 1: [
 	string marcelo = "eu";
 	double auqwid = 1.6;
-	w = w - 1;
 ];
 
 int r = 0;
