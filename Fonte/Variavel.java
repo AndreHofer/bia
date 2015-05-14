@@ -43,12 +43,9 @@ class Variavel{
 
 		if(!(linhaAtual.indexOf(",") >= 0)) {
 			if(!(linhaAtual.indexOf("=") >= 0)) {
-				//System.out.println(variavelDeclarada);
 				if(variavelDeclarada.indexOf(";") >= 0) {
 					variavelDeclarada = variavelDeclarada.replaceAll(";","");
 				}
-				//retornaVariavel.setNome(variavelDeclarada);
-				//System.out.println(variavelDeclarada);
 				if (retornaVariavel instanceof Inteiro) {
 					retornaVariavel = fazSet(variavelDeclarada,"inteiro");
 				}else if(retornaVariavel instanceof Numeral) {
@@ -88,7 +85,7 @@ class Variavel{
 		}
 		/*Aqui ele faz a leitura do teclado, no caso de uma declaração de variavel*/
 		if(nomeValor[1].equals("(escreve)")){
-			nomeValor[1]= escrever(nomeValor[1], tipo);
+			nomeValor[1]= escrever(nomeValor[1]);
 		}
 		if(tipo.equals("inteiro")) {
 			Inteiro estado = new Inteiro();
@@ -121,7 +118,6 @@ class Variavel{
 			if ((nomeValor[1].indexOf("+")>= 0)||(nomeValor[1].indexOf("-")>= 0)||(nomeValor[1].indexOf("*")>= 0)||(nomeValor[1].indexOf("/")>= 0)||(nomeValor[1].indexOf("%")>= 0)) {
 				if (nomeValor[1].indexOf("+")>= 0){
 					opera=nomeValor[1].split("\\+");
-					System.out.println("v1 "+opera[0]+" " +opera[1]);
 					estado.soma(Double.valueOf(opera[0]).doubleValue(),Double.valueOf(opera[1]).doubleValue());
 				} else if(nomeValor[1].indexOf("-")>= 0){
 					opera=nomeValor[1].split("-");
@@ -150,18 +146,11 @@ class Variavel{
 		return estadoAtual;
 	}
 
-	public String escrever(String nomeValor, String tipo){
+	public String escrever(String nomeValor){
 		Scanner scanner = new Scanner(System.in);
-		if(tipo.equals("inteiro")) {
-			System.out.println("Digite:");//teste
-			nomeValor = scanner.nextLine();
-		}else if(tipo.equals("double")) {
-			System.out.println("Digite:");//teste
-			nomeValor = scanner.nextLine();
-		}else if(tipo.equals("string")) {
-			System.out.println("Digite:");//teste
-			nomeValor = scanner.nextLine();
-		}
+		System.out.println("Digite:");//teste
+		nomeValor = scanner.nextLine();
+	
 		return nomeValor;
 	}
 

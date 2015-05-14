@@ -1,12 +1,5 @@
-/**
- * Exemplo de interpretador.
- *
- * Esse código é um exemplo de interpretador para a linguagem 'Blah'. Esse programa
- * não faz qualquer interpretação, ele apenas recebe o conteúdo de um arquivo que foi
- * passado pela linha de comando.
- *
- * Por Fernando Bevilacqua <fernando.bevilacqua@uffs.edu.br>
- */
+/*
+*/
 
 class Interpretador {
 	private String linhas[];
@@ -29,15 +22,12 @@ class Interpretador {
     		String linhaAtual = this.linhas[i];
     		/*Limitar áre if */
     		if((linhaAtual.indexOf("para")>=0) && (linhaAtual.indexOf(":")>=0)) {
-    			
     			String quebrar[] = linhaAtual.split(":");
     			quebrar = quebrar[1].split(";");
-    			
     			analisaLinha(quebrar[0]);
     			String[] quebrar2 = quebrar[0].split("=");
     			quebrar2 = quebrar2[0].split(" ");
     			boolean estado = true;
-    			//System.out.println("var e: "+quebrar2[1]);
     			int y = i + 1;
     			boolean status = false;
     			while(status == false) {
@@ -47,13 +37,10 @@ class Interpretador {
     				y++;
     			}
     			int andar = (y - i) - 1;
-    			
     			do{
-    				
     				analisaLinha(quebrar2[1]+"= "+quebrar2[1]+"+ 1" );
     				Fluxo analiseFluxo = new Fluxo();
     				analiseFluxo.analiseFluxo(" :"+quebrar[1]+": ");
-
     				for(int e = 0; (e < analiseFluxo.dados.length) && (analiseFluxo.dados[e][0] != null);e++) {
     					analiseFluxo.dados[e][1] = buscarValorVariavel(analiseFluxo.dados[e][0]);
     				}
@@ -62,11 +49,8 @@ class Interpretador {
     					break;
     				}
     				for(int and = i+1;and < (andar+i+1)  ;and++) {
-			  		  //System.out.println(i+"--->>"+this.linhas[and]);
     					analisaLinha(this.linhas[and]);
     				}
-    				
-    				
     			}while(estado);
     		}else if((linhaAtual.indexOf("se") >=0) && (linhaAtual.indexOf(":") >= 0) ) {
     			Fluxo analiseFluxo = new Fluxo();
@@ -85,9 +69,7 @@ class Interpretador {
     					y++;
     				}
     				andar = (y - i) - 1;
-
     				for(int and = i+1;and < y  ;and++) {
-			  		//System.out.println("--->>"+this.linhas[and]);
     					analisaLinha(this.linhas[and]);
     				}
     				i = y;	
@@ -107,24 +89,7 @@ class Interpretador {
     			analisaLinha(linhaAtual);
     		}
     	}
-        //Imprimindo o conteúdo do vetor de variáveis
-        // Somente para teste
-    	for(int y = 0;y < 2000 && atributos[y].getNome() != null; y++) {
-    		if(atributos[y] instanceof Inteiro) {
-    			Inteiro n = (Inteiro) atributos[y];
-    			System.out.println(y+" "+n.getNome()+ " "+ n.getInteiro());   
-    		}
-    		if(atributos[y] instanceof Escrita) {
-    			Escrita n = (Escrita) atributos[y];
-    			System.out.println(y+" "+n.getNome()+ " "+ n.getEscrita());   
-    		}
-    		if(atributos[y] instanceof Numeral) {
-    			Numeral n = (Numeral) atributos[y];
-    			System.out.println(y+" "+n.getNome()+ " "+ n.getNumeral());   
-    		}
-    	} 
     }
-
     
     public void analisaLinha(String l) {
     	String[] comenta = new String[2];
@@ -137,7 +102,6 @@ class Interpretador {
     		linhaAtual=comenta[0];
     	}
     	/* Inserindo tipo para tratar as expressões */
-
     	if(linhaAtual.indexOf("=") >= 0) {
     		if(!(linhaAtual.indexOf("int") >= 0) && !(linhaAtual.indexOf("double") >= 0) &&
     			!(linhaAtual.indexOf("string") >= 0)) {
@@ -170,16 +134,13 @@ class Interpretador {
     			recorte[0] = buscarValorVariavel(recorte[0]);
     			recorte[1] = buscarValorVariavel(recorte[1]);
     			linhaAtual = tipo_var + " " + dividido[0] +" = "+recorte[0]+op+recorte[1];
-    			
-
     		}else {
     			if((linhaAtual.indexOf("(escreve)")>=0)) {
     				linhaAtual = linhaAtual.replaceAll(";","");	
     				String[] dividido = linhaAtual.split("=");
     				String tipo_var = getTipoVariavel(dividido[0]);
     				linhaAtual = tipo_var+" " + linhaAtual;
-    			}else{
-    				
+    			}else{    				
     				linhaAtual = linhaAtual.replaceAll(";","");
     				String[] dividido = linhaAtual.split("=");
     				String tipo_var = getTipoVariavel(dividido[0]);
@@ -189,21 +150,20 @@ class Interpretador {
     	}
     }
 
-
     /*Fim */
     /*Função de imprimir*/
     if(linhaAtual.indexOf("imprime") >= 0){
     	imprimir( linhaAtual);
     }else if(( (linhaAtual.indexOf("int") >= 0)) || ( linhaAtual.indexOf("double") >= 0)  || 
     	(linhaAtual.indexOf("string") >= 0)) {
-			// Se tem vírgula preciso quebrar em partes e mandar para análise igual
+		// Se tem vírgula preciso quebrar em partes e mandar para análise igual
     	if(l.indexOf(",") >= 0) {
     		String tipo = "";
     		String[] vetorTamanho = l.split(",");
     		int tamanhoVetor = vetorTamanho.length;
     		if(linhaAtual.indexOf("int") >= 0) {
     			tipo = "int";
-					//Removo espaços vazios, \\s ; e \"
+				//Removo espaços vazios, \\s ; e \"
     			linhaAtual = linhaAtual.replaceAll("[\\s;\"]",""); 
     			linhaAtual = linhaAtual.replaceAll("int","");
     		}else if(linhaAtual.indexOf("string") >=0 ) {
@@ -225,14 +185,12 @@ class Interpretador {
 					this.inserirVariavel(var);
 				} 
 			}else {
-
 				Variavel var = new Variavel();
 				var = var.tratarDeclaracaoVariavel(linhaAtual);
 				this.inserirVariavel(var);
 			}
 		}
 		/*Fim da parte que analisa se a linha se trata de uma declaração de variável*/ 
-
 	}
 
 	public void inserirVariavel(Variavel var) {
@@ -274,13 +232,12 @@ class Interpretador {
 			}
 		}
 	}
+	
 	public String getTipoVariavel(String var) {
 		String v = var.replaceAll(" ","");
 		boolean status = false;
-
 		for(int i = 0; status == false; i++ ) {
 			if(atributos[i].getNome() != null) {
-
 				if(atributos[i].getNome().replaceAll(" ","").equals(v.replaceAll(" ",""))) {
 					if(atributos[i] instanceof Inteiro) {
 						v = "int";
@@ -298,7 +255,6 @@ class Interpretador {
 				break;
 			}
 		}
-
 		return v;
 	}
 
@@ -309,7 +265,6 @@ class Interpretador {
 		st = "0";
 		for(int i = 0; status == false; i++ ) {
 			if(atributos[i].getNome() != null) {
-
 				if(atributos[i].getNome().replaceAll(" ","").equals(busca)) {
 					if(atributos[i] instanceof Inteiro) {
 						Inteiro n = (Inteiro) atributos[i];
@@ -325,7 +280,6 @@ class Interpretador {
 					break;
 				}
 			}
-
 			if(i == 1999) {
 				status = true;
 				break;
@@ -374,5 +328,4 @@ class Interpretador {
 			}
 			System.out.print("\n");
 		}
-
 	}
