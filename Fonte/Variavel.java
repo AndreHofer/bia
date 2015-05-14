@@ -47,8 +47,7 @@ class Variavel{
 				if(variavelDeclarada.indexOf(";") >= 0) {
 					variavelDeclarada = variavelDeclarada.replaceAll(";","");
 				}
-				//retornaVariavel.setNome(variavelDeclarada);
-				//System.out.println(variavelDeclarada);
+				
 				if (retornaVariavel instanceof Inteiro) {
 					retornaVariavel = fazSet(variavelDeclarada,"inteiro");
 				}else if(retornaVariavel instanceof Numeral) {
