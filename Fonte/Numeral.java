@@ -1,3 +1,9 @@
+/*******************************************************************************
+Nome: Numeral.java
+Autor: Marcelo Acordi - marcelopancotte@gmail.com
+         André Hofer
+Decrição: Esta classe é reponsável pelas operações das variáveis double.
+*******************************************************************************/
 class Numeral extends Variavel{
 	private double valor;
 	

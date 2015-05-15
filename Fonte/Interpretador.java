@@ -1,12 +1,9 @@
-				/**
-				 * Exemplo de interpretador.
-				 *
-				 * Esse código é um exemplo de interpretador para a linguagem 'Blah'. Esse programa
-				 * não faz qualquer interpretação, ele apenas recebe o conteúdo de um arquivo que foi
-				 * passado pela linha de comando.
-				 *
-				 * Por Fernando Bevilacqua <fernando.bevilacqua@uffs.edu.br>
-				 */
+/*******************************************************************************
+Nome: Interpretador.java
+Autor: Marcelo Acordi - marcelopancotte@gmail.com
+         André Hofer
+Decrição: 
+*******************************************************************************/
 
 				class Interpretador {
 					private String linhas[];

@@ -1,3 +1,9 @@
+/*******************************************************************************
+Nome: Inteiro.java
+Autor: Marcelo Acordi - marcelopancotte@gmail.com
+         André Hofer
+Decrição: Esta classe é reponsável por fazer as tarefas em relação a variável inteiro.
+*******************************************************************************/
 class Inteiro extends Variavel{
 	private int valor;
 	
