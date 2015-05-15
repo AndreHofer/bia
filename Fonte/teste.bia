@@ -17,12 +17,13 @@ int e=5%2;
 double f= 3 + 2;
 double g= 3-2;
 double h= 3*2;
-double i =   3 /2;
+double i =8;
 double j=5.3%2;
 a = a + 3;
 imprime (' variavel a:'| a |' variavel ja:'|   ja |'   deu certo!');
-string andre=(escreve);
+int andre=(escreve);
 ja= andre;
+
 
 
 
