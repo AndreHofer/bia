@@ -1,71 +1,14 @@
+imprime('Calcular Média De Dois Números');
+imprime('--------------------------------------');
 
-#fazendo um comentário
-# não aceita codigo depois do comentario
-### não aceita codigo depois do comentario
+imprime('Por favor, digite dois números: ');
+double numA = (escreve);
 
-
-
-### não aceita codigo depois do comentario;
-string marcelo = "oi";
-
-int z;
-int a=3 + 2;
-int b= 5-2;
-int c= 3*2;
-int d =  3  /2;
-int e=5%2;
-double f= 3 + 2;
-double g= 3-2;
-double h= 3*2;
-double i =8;
-double j=5.3%2;
-imprime (' variavel a:'| a |' variavel ja:'|   ja |'   deu certo!');
-int andre=(escreve);
-ja= andre;
+double numB = (escreve);
+double resultado;
+resultado = numA + numB;
+resultado = resultado / 2;
+imprime('--------------------------------------');
+imprime('O resultado da operação é: '|resultado|);
 
 
-g = h;
-a++;
-
-int babaca;
-
-
-int w = 3;
-
-se :w >= 1: [
-	string marcelo = "eu";
-	double auqwid = 1.6;
-];
-
-int r = 0;
-
-para :int i = 0; i < 15; i++:  [
-r= r + 1;
-];
-int w = 10;
-int q = 15;
-
-se :w >= 2: [
-	imprime('UFFS 1');	
-	se :q > 2:[
-		imprime('UFFS 2');
-		se : q>76: [
-			imprime('UFFS 3');
-		]exceto[ 
-			imprime('UFFS 4');
-		]
-	]
-	se :q> 96: [
-		imprime('UFFS 5');
-	]exceto[
-		imprime('UFFS 6');
-	]
-	imprime('UFFS 7');
-];
-imprime('askjdkjasdasd');
-imprime('Continuando ');
-imprime('isso tá muito louco e divertido vamos continuar');
-
-para :int i = 0; i < 15; i++:  [
-imprime (' Eu demais:'| i |);
-];

@@ -2,7 +2,8 @@
 Nome: Interpretador.java
 Autor: Marcelo Acordi - marcelopancotte@gmail.com
          André Hofer
-Decrição: 
+Decrição: Esta classe é reponsável por descobrir do que se
+ trata a linha a ser interpretada e processar a mesma.
 *******************************************************************************/
 
 				class Interpretador {
@@ -233,7 +234,7 @@ Decrição:
 				    }
 						    
 		}
-			for(int y = 0;y < 2000 && atributos[y].getNome() != null; y++) {
+			/*for(int y = 0;y < 2000 && atributos[y].getNome() != null; y++) {
 	    		if(atributos[y] instanceof Inteiro) {
 	    			Inteiro n = (Inteiro) atributos[y];
 	    			System.out.println(y+" "+n.getNome()+ " "+ n.getInteiro());   
@@ -246,8 +247,8 @@ Decrição:
 	    			Numeral n = (Numeral) atributos[y];
 	    			System.out.println(y+" "+n.getNome()+ " "+ n.getNumeral());   
 	    		}
-	    	} 
-		    }
+	    	} */
+		}
 		    
 		    public void analisaLinha(String l) {
 		    	String[] comenta = new String[2];
