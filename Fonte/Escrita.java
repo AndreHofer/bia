@@ -1,7 +1,7 @@
 /*******************************************************************************
 Nome: Escrita.java
 Autor: Marcelo Acordi - marcelopancotte@gmail.com
-         André Hofer
+         André Hofer - andreluizhofer@gmail.com
 Decrição: Esta classe é reponsável criar espaço da escrita.
 *******************************************************************************/
 class Escrita extends Variavel{

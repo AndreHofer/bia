@@ -1,7 +1,7 @@
 /*******************************************************************************
 Nome: Interpretador.java
 Autor: Marcelo Acordi - marcelopancotte@gmail.com
-         André Hofer
+         André Hofer - andreluizhofer@gmail.com
 Decrição: Esta classe é reponsável por descobrir do que se
  trata a linha a ser interpretada e processar a mesma.
 *******************************************************************************/

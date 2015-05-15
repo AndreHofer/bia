@@ -1,7 +1,7 @@
 /*******************************************************************************
 Nome: Variável.java
-Autor: Marcelo Acordi - <marcelopancotte@gmail.com>
-         André Hofer
+Autor: Marcelo Acordi - marcelopancotte@gmail.com
+         André Hofer - andreluizhofer@gmail.com
 Decrição: Esta classe é reponsável por quebrar e analisar o que for relacionado as variáveis.
 *******************************************************************************/
 	import java.util.Scanner;

@@ -1,0 +1,16 @@
+#Este Programa calcula a média de dois Números
+#Criado por: Marcelo Acordi e André Hofer
+imprime('Calcular Média De Dois Números');
+imprime('--------------------------------------');
+
+imprime('Por favor, digite dois números: ');
+double numA = (escreve);
+
+double numB = (escreve);
+double resultado;
+resultado = numA + numB;
+resultado = resultado / 2;
+imprime('--------------------------------------');
+imprime('O resultado da operação é: '|resultado|);
+
+

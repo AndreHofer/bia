@@ -1,7 +1,7 @@
 /*******************************************************************************
 Nome: Fluxo.java
 Autor: Marcelo Acordi - marcelopancotte@gmail.com
-         André Hofer
+         André Hofer - andreluizhofer@gmail.com
 Decrição: Esta classe é reponsável por quebrar e analisar as condições de Fluxo e setar as variáveis
 em um vetor. 
 *******************************************************************************/
