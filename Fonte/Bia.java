@@ -29,17 +29,27 @@
             // Instanciamos o interpretador.
             b = new Interpretador();
 
-            // Lemos todas as linhas do arquivo para dentro do
-            // vetor "linhas".
-            int i = 0;
-            while(s.hasNext()) {
-                linhas[i] = s.nextLine();
-                i++;
-            }
 
-            // Inicializamos o interpretador com o vetor de linhas. A partir
-            // desse ponto, o objeto "b" irá interpretar o código lido do arquivo.
-            b.setVolta(linhas);
-            b.tratamento(linhas,0,0);
+        // Lemos todas as linhas do arquivo para dentro do
+        // vetor "linhas".
+        int i = 0;
+        String juntalinhas = new String();
+        juntalinhas="";
+        while(s.hasNext()) {
+            linhas[i] = s.nextLine();
+            linhas[i]=linhas[i].replaceAll("\n","");
+            if((linhas[i].indexOf(";")>=0)||(linhas[i].indexOf("[")>=0)){
+				linhas[i]=juntalinhas+linhas[i];
+				juntalinhas="";
+				i++;
+			} else{
+				juntalinhas=juntalinhas+linhas[i]+" ";
+			}
         }
+        // Inicializamos o interpretador com o vetor de linhas. A partir
+        // desse ponto, o objeto "b" irá interpretar o código lido do arquivo.
+        b.setVolta(linhas);
+        b.tratamento(linhas,0,0);
+
     }
+}
